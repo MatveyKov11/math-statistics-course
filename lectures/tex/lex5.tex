@@ -1,0 +1,73 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[OT1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\topmargin=-0.54cm
+\textheight=25.7cm
+\oddsidemargin=-0.04cm
+\textwidth=17cm
+\newcommand{\pict}[1]{\includegraphics[scale=0.04]{#1}}
+\newcommand{\bin}[2]{\left( \begin{matrix} #1 \\ #2 \end{matrix} \right)}
+\newcommand{\spl}[2]{\{ \begin{matrix} #1 \\ #2 \end{matrix} \}}
+\begin{document}
+Пример применения теоремы Бхаттачария - $N(\theta, \sigma^2)$ \par 
+$L(X, \theta) = \frac{1}{(2\pi)^{n/2}\sigma^n}\exp(-\frac{\sum(X_i - \theta)^2}{2\sigma^2})$ \par 
+$(\ln L(X, \theta))' = \frac{\sum(X_i - \theta)}{\sigma^2} = \frac{n\overline{X} - n\theta}{\sigma^2} = \frac{n}{\sigma^2}(\overline{X} - \theta) = \frac{L^{(1)}}{L}$ \par 
+$L^{(1)} = \frac{n}{\sigma^2}(\overline{X} - \theta)L$ \par 
+$L^{(2)} = -\frac{n}{\sigma^2}L + \frac{n}{\sigma^2}(\overline{X} - \theta)\frac{L^{(1)}}{L}L$ \par 
+$\frac{L^{(2)}}{L} = -\frac{n}{\sigma^2} + \frac{n^2}{\sigma^4}(\overline{X} - \theta)^2$ \par 
+Надо получить $T - \theta^2 = k_1\frac{L^{(1)}}{L} + k_2\frac{L^{(2)}}{L}$ \par 
+$k_1 = 2\theta\frac{n}{\sigma^2}$, $k_2 = \frac{\sigma^4}{n^2}$ \par 
+$2\theta\frac{n}{\sigma^2}\frac{L^{(1)}}{L} + \frac{\sigma^4}{n^2}\frac{L^{(2)}}{L} = -\frac{\sigma^2}{n} + \overline{X}^2 - \theta^2$ \par 
+$T(X) = \overline{X}^2 - \frac{\sigma^2}{n}$ - несмещённая оценка $\theta^2$ и оптимально оценивает её в силу теоремы Бхаттачария \par 
+Эффективное оценивание функций в случае векторного параметра \par 
+$\theta = (\theta_1, \ldots, \theta_r)^T$ \par 
+Рассмотрим матрицу с элементами $g_{i,j}(\theta) = E_{\theta}\frac{\partial\ln L}{\partial \theta_i}\cdot\frac{\partial\ln L}{\partial \theta_i} = (I_n(\theta))_{ij}$ - информационная матрица Фишера \par 
+Теорема \par 
+Пусть $\tau(\theta) = \tau(\theta_1, \ldots, \theta_r)$ и $T$ - статистика, которая несмещённо оценивает $\tau$. Тогда справедливо неравенство $D_{\theta} \geq \sum\limits_{i,j=1}^rg_{i,j}(\theta)c_i(\theta)c_j(\theta)$ $(*)$, где вектор $(c_1(\theta), \ldots, c_r(\theta))^T$ является решением системы $\sum\limits_{j=1}^rg_{i,j}(\theta)c_j(\theta) = \frac{\partial\tau}{\partial\theta_i}$, $i = 1,\ldots,r$ \par 
+Неравенство $(*)$ называется неравенством Рао-Крамера и равенство в нём имеет место тогда и только тогда, когда $T - \tau = \sum\limits_{i = 1}^r c_i(\theta)\frac{\partial\ln L}{\partial\theta_i}$ - называется условием Рао-Крамера $(**)$ \par 
+Оценка, удовлятворяющая условию Рао-Крамера и дающая минимальное значение $D_{\theta}$, называются эффективной \par 
+Замечание \par 
+Если $I_n(\theta)$ имеет обратную матрицу с элементами $g^{i,j}(\theta)$, то вектор $c(\theta) = (c_1(\theta), \ldots, c_r(\theta))^T = I_n^{-1}(\theta)grad\tau$ \par 
+Нижняя граница в $(*)$ примет вид $(grad\tau)^T(I_n^{-1}(\theta))^TI_n(\theta)I_n^{-1}(\theta)grad\tau = (grad\tau)^TI_n^{-1}grad\tau$, ($I_n^{-1} = (I_n^{-1})^T$) \par 
+Это обобщение скалярной формулы \par 
+Пример - обобщение среднего в случае мещающего параметра в нормальной модели \par 
+Есть выборка из $N(\theta_1, \theta_2^2)$ \par 
+Покажем, что $\overline{X}$ является эффективной оценкой для $\tau(\theta) = \theta_1$ \par 
+$f(x, \theta) =  \frac{1}{\sqrt{2\pi}\theta_2}\exp(-\frac{1}{2\theta_2^2(x - \theta_1)^2})$ \par 
+$\ln f(x, \theta) = -\frac{1}{2\theta_2^2}(x - \theta_1)^2 - \ln\theta_2 - \ln\sqrt{2\pi}$ \par 
+$I_n(\theta) = nI_1(\theta)$ \par 
+$g_{11}(\theta) = E_{\theta}(\frac{\partial\ln f(x_1, \theta)}{\partial\theta_1})^2 = E_{\theta} \frac{1}{\theta_2^4}(X_1 - \theta_1)^2 = \frac{1}{\theta_2^2}$ \par 
+$g_{22}(\theta) = E_{\theta}(\frac{1}{\theta_2^3}(X_1 - \theta_1)^2 - \frac{1}{\theta_2})^2 = \frac{1}{\theta_2^6}E_{\theta}(X_1 - \theta_1)^4 - \frac{1}{\theta_2^2} = \frac{3}{\theta_2^2} - \frac{1}{\theta_2^2} = \frac{2}{\theta_2^2}$ \par 
+$g_{22}(\theta) = E_{\theta}(\frac{1}{\theta_2^3}(\frac{\partial\ln f(x_1, \theta)}{\partial\theta_1})(X_1 - \theta_1)^2 - \frac{1}{\theta_2}) = 0$ \par 
+$I_n(\theta) = \left(\begin{matrix}
+	n/\theta_2^2 & 0 \\
+	0 & 2n/\theta_2^2
+\end{matrix}\right)$ \par 
+Система уравнений: \par 
+$\left\lbrace\begin{matrix}
+	\frac{n}{\theta_2^2}c_1 = 1 & c_1 = \frac{\theta_2^2}{n} \\
+	\frac{2n}{\theta_2^2}c_2 = 0 & c_2 = 0
+\end{matrix}\right.$ \par 
+$T - \tau(\theta) = c_1\frac{1}{\theta_2^2}\sum\limits_{i = 1}^n(X_i - \theta_1) = \frac{1}{n}\sum\limits_{i = 1}^n(X_i - \theta_1) = \overline{X} - \theta_1$, $T$ - несмещённая оценка \par 
+$D_{\theta}T = \frac{\theta_2^2}{n}$ \par 
+Смотрим на нижнюю границу: \par 
+$\sum\limits_{i,j}g_{ij}(\theta)c_i(\theta)c_j(\theta) = g_11(\theta)c_1(\theta)c_1(\theta) = \frac{n}{\theta_2^2}\cdot\frac{\theta_2^2}{n}\cdot\frac{\theta_2^2}{n} = \frac{\theta_2^2}{n}$ - эффективная оценка \par 
+Достаточные статистики и их свойства \par 
+Пусть $T$ - статистика (борелевская функция выборки), $X = (X_1, \ldots, X_n)^T$ - сама выборка \par 
+$\mathbb{P}(\{X\in B\}|\{T = t\})$ - обычная условная вероятность, если $t$ принимает конечное или счётное число значений \par 
+Если распределение $T$ непрерывное, то $\mathbb{P}(\{T = t\}) = 0$, но $P_{\theta}(B, t)$ всегда есть \par 
+$P_{\theta}(B, t) = \mathbb{P}_{\theta}(\{X\in B\}|\{T = t\})$ - условное распределение выборки при известном значении статистики \par 
+Если, что $P_{\theta}(B, t) = P(B, t)$, то есть, не зависит от $\theta$, тогда статистика $T$ называется достаточной \par 
+Если $T$ достаточна, то в $P$ нет информации о параметре, эта информация содержится в $T$, происходит редуцирование данных \par 
+Как проверять статистику на достаточность? \par 
+Критерий факторизации \par 
+Пусть $L(X, \theta) = \prod\limits_{i=1}^{\infty}f(X_i, \theta)$ - функция правдоподобия \par 
+$T$ - статичтика, $g(t, \theta)$ - плотность распределения $T$, плотность по мере Лебега или дискретной мере \par 
+Статистика $T$ достаточна тогда и только тогда, когда $L(X, \theta) = g(T, \theta)\cdot h(X)$ (с вероятностью 1), где $h$ - некоторая борелевская функция \par 
+\end{document}

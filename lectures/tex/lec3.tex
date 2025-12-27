@@ -1,0 +1,95 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[OT1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\topmargin=-0.54cm
+\textheight=25.7cm
+\oddsidemargin=-0.04cm
+\textwidth=17cm
+\newcommand{\pict}[1]{\includegraphics[scale=0.04]{#1}}
+\newcommand{\bin}[2]{\left( \begin{matrix} #1 \\ #2 \end{matrix} \right)}
+\newcommand{\spl}[2]{\{ \begin{matrix} #1 \\ #2 \end{matrix} \}}
+\begin{document}
+Неравенство Рао-Крамера и связанные с ним неравенства и оценки \par 
+(только для регулярных моделей) \par 
+Пусть $F(\theta), \theta \in \Theta$ - параметрическая статистическая модель \par 
+$F(\theta) \sim P(\theta)$ \par 
+Модель называется регулярной, если \par 
+1) Носитель меры $P(\theta)$ не зависит от параметра (носитель меры - множество меры/вероятности 1) \par 
+2) $f(x, \theta)$ дифференцируема по $\theta$ и $(\int\limits_{\mathbb{R}^1}g(x)f(x, \theta)\lambda(dx))_{\theta}' = \int\limits_{\mathbb{R}^1}g(x)f_{\theta}'(x, \theta)\lambda(dx)$, интеграл матожидания $g(x)$ можно дифференцировать по параметру, занося производную под интеграл \par 
+Пример 1 \par 
+$R((0; \theta))$ не является регулярной \par 
+$f(x, \theta) = \left\lbrace \begin{matrix}
+	\frac{1}{\theta}, & 0 < x < \theta \\
+	0, & \text{в ином случае}
+\end{matrix} \right.$ \par 
+Носитель меры - интервал $(0; \theta)$ - зависит от параметра \par 
+Пример 2 \par
+$\Pi(\theta)$ - регулярная \par 
+$f(x, \theta) = \frac{\theta^x}{x!}e^{-\theta}$, $x = 0, 1, 2, \ldots$ \par 
+Носитель меры не зависит от $\theta$ \par 
+Вместо интеграла - ряд \par 
+$\sum\limits_{x = 0}^{+\infty}g(x)f(x, \theta) = \sum\limits_{x = 0}^{+\infty}g(x)\frac{\theta^x}{x!}e^{-\theta}$ - ряд можно почленно дифференцировать по параметру, если он сходится \par 
+Функция правдоподобия выборки \par 
+$L(X, \theta) = \prod\limits_{i = 1}^nf(X_i, \theta)$ \par 
+$L(x, \theta) = \prod\limits_{i = 1}^nf(x_i, \theta)$ - плотность распределения вектора выборки \par 
+У функции правдоподобия интеграл всегда берётся по $\mathbb{R}^n$ \par 
+Вклад выборки ($\theta$ - скалярная величина) \par 
+$U(X, \theta) = \frac{\partial}{\partial \theta} \ln L(X, \theta)= \sum\limits_{i = 1}^n \frac{(f(X_i, \theta))_{\theta}'}{f(X_i, \theta)}$ - сумма вкладов элементов выборки \par 
+$U_n(X, \theta) = \sum\limits_{i = 1}^nU_1(X_i, \theta)$ \par 
+$EU_1(X_1, \theta) = E\frac{\partial}{\partial \theta} \ln f(X_1, \theta) = \int\limits_{\mathbb{R^1}} \frac{f_{\theta}'(X_1, \theta)}{f(X_1, \theta)}f(X_1, \theta)\lambda(dx) = \int\limits_{\mathbb{R^1}} f_{\theta}'(X_1, \theta)\lambda(dx) = (\int\limits_{\mathbb{R^1}} f(X_1, \theta)\lambda(dx))_{\theta}' = (1)_{\theta}' = 0$ \par 
+$i_n(\theta) = D_{\theta}U_n(X, \theta)$ - информационное количество Фишера \par 
+$i_n(\theta) = ni_1(\theta)$, так как $X_i$ независимые \par 
+$i_1(\theta) = \int\limits_{\mathbb{R^1}}U_1^2(x, \theta)f(x, \theta)\lambda(dx) = \int\limits_{\mathbb{R^1}}\frac{(f_{\theta}^2(x, \theta))^2}{f(x, \theta)}\lambda(dx)$ \par 
+Если плотность имеет 2-ые производные по параметру, то есть ещё формулы вычисления \par 
+$\int\limits_{\mathbb{R^1}}\frac{\partial^2}{\partial \theta^2} \ln f(x, \theta) \cdot f(x, \theta) \lambda(dx) = \frac{\partial}{\partial \theta} \ln f(x, \theta) \cdot f(x, \theta) |_{-\infty}^{+\infty} - \int\limits_{\mathbb{R^1}}(\frac{\partial}{\partial \theta} \ln f(x, \theta))^2f(x, \theta)\lambda(dx) = -i_1(\theta)$ - пользуемся интегрированием по частям, плотность на $\pm \infty$ обращается в $0$ \par 
+$i_1(\theta) = -E\frac{\partial^2}{\partial \theta^2} \ln f(X_1, \theta)$ \par 
+Пример 1 \par 
+$Bi(1, \theta)$ - модель испытаний Бернулли \par 
+$L(X_1, \theta) = \theta^{X_1}(1 - \theta)^{1 - X_1}$ \par 
+$L(X, \theta) = \theta^{\sum X_i}(1 - \theta)^{n - \sum X_i} = \theta^{n\overline{X}}(1 - \theta)^{n(1 - \overline{X})}$ \par 
+$U(X, \theta) = \frac{\partial}{\partial \theta} \ln L(X, \theta) = \frac{\partial}{\partial \theta} (n\overline{X}\ln \theta + n(1 - \overline{X}\ln (1 - \theta)) = n\overline{X}\frac{1}{\theta} - n(1 - \overline{X}\frac{1}{1 - \theta} = \frac{n\overline{X}}{\theta (1 - \theta)} - \frac{n}{1 - \theta}$ \par 
+Проверка: $EU(X, \theta) = E(\frac{n\overline{X}}{\theta (1 - \theta)} - \frac{n}{1 - \theta}) = \frac{n\theta}{\theta(1 - \theta)} - \frac{n}{1 - \theta} = 0$ \par 
+$i_n(\theta) = D(\frac{n\overline{X}}{\theta (1 - \theta)} - \frac{n}{1 - \theta}) = D\frac{n\overline{X}}{\theta (1 - \theta)} = \frac{n^2}{\theta^2(1 - \theta)^2}D\overline{X} = \frac{n^2}{\theta^2(1 - \theta)^2}\frac{1}{n^2}nDX_1 = \frac{n}{\theta (1 - \theta)}$ ($DX_1 = \theta (1 - \theta)$) \par 
+Пример 2 \par 
+Экспоненциальная модель \par 
+$f(x, \theta) = \left\lbrace \begin{matrix}
+	\frac{1}{\theta}e^{-\frac{x}{\theta}}, & x > 0 \\
+	0, & x \leq 0
+\end{matrix}\right.$ \par 
+$\ln f(x, \theta) = -\frac{x}{\theta} - \ln \theta$ \par 
+$U_1(x, \theta) = \frac{\partial}{\partial \theta}\ln f(x, \theta) = \frac{x}{\theta^2} - \frac{1}{\theta}$ \par 
+$i_1(\theta) = \frac{1}{\theta^4}DX_1 = \frac{1}{\theta^4}(\int\limits_0^{+\infty}\frac{x^2}{\theta^2}e^{-\frac{x}{\theta}}dx - \theta^2) = \frac{1}{\theta^4}\theta^2(\Gamma(3) - 1) = \frac{1}{\theta^2}$ \par 
+Неравенство и условие Рао-Крамера \par 
+Пусть $T$ - несмещённая оценка $\tau(\theta),\ \forall\theta\ E_{\theta}T = \tau(\theta)$ \par 
+Если $T$ имеет 2-ой момент, то \par 
+$|cov(T, U)|^2 \leq D_{\theta}T \cdot D_{\theta}U = i_n(\theta)D_{\theta}T$ \par 
+$\tau(\theta) = E_{\theta}T,\ \tau'(\theta) = \int\limits_{\mathbb{R}^n}T(x)\frac{\partial}{\partial \theta}L(x, \theta)\lambda(dx) = \int\limits_{\mathbb{R}^n}T(x)U(x)L(x, \theta)\lambda(dx) = cov(T, U)$ \par 
+$|\tau'(\theta)|^2 \leq i_n(\theta)D_{\theta}T$ - для любой регулярной модели \par 
+Можно оценить дисперсию оценки: \par 
+$D_{\theta}T \geq \frac{|\tau'(\theta)|^2}{i_n(\theta)}$ - неравенство Рао-Крамера \par 
+Оценка называется эффективной, если её дисперсия равна правой части в неравенстве Рао-Крамера \par 
+Равенство в неравенстве Рао-Крамера достигается тогда и только тогда, когда $cov(T, U) = 0$, или $T - \tau(\theta) = a(\theta)U(X, \theta)$ - условие Рао-Крамера, $a(\theta)$ - постоянный множитель, не случайный \par 
+Если модель допускает эффективную оценку, то она выделяется из вклада выборки (примеры ниже) \par 
+Пример 1 - $Bi(1, \theta)$ \par 
+$U(X, \theta) = \frac{n\overline{X}}{\theta (1 - \theta)} - \frac{n}{1 - \theta}$ \par 
+$\theta (1 - \theta)U(X, \theta) = n\overline{X} - n\theta$ \par 
+$T = n\overline{X},\ \tau(\theta) = n\theta$, $\overline{X}$ (среднее число успехов) эффективно оценивает вероятность успеха $\theta$ \par 
+Пример 2 - экспоненциальная модель \par 
+$U_1(x, \theta) = \frac{x}{\theta^2} - \frac{1}{\theta}$ \par 
+$U_n(X, \theta) = \frac{n\overline{X}}{\theta^2} - \frac{n}{\theta}$ \par 
+$\frac{\theta^2}{n}U(X, \theta) = \overline{X} - \theta$ - аналогично, выборочное среднее эффективно оценивает $\theta$ \par 
+Пример 3 - $N(0, \theta^2)$ \par 
+$f(x, \theta) = \frac{1}{\sqrt{2\pi}\theta}e^{-\frac{x^2}{2\theta^2}}$ \par 
+$\ln f(x, \theta) = -\ln\theta - \frac{x^2}{2\theta^2} - \ln\sqrt{2\pi}$ \par
+$\frac{\partial}{\partial}\ln f(x, \theta) = -\frac{1}{\theta} + \frac{x^2}{\theta^3} = U_1(x, \theta)$ \par 
+$U_1(X_1, \theta) = \frac{X_1^2}{\theta^3} - \frac{1}{\theta}$ \par 
+$\theta^3U_1 = X_1^2 - \theta^2$ \par 
+$\theta^3U_n = n\overline{X^2} - n\theta^2$ \par 
+$\frac{\theta^3}{n}U_n = \overline{X^2} - \theta^2$ - средний квадрат эффективно оценивает дисперсию \par 
+\end{document}

@@ -1,0 +1,132 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[OT1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\topmargin=-0.54cm
+\textheight=25.7cm
+\oddsidemargin=-0.04cm
+\textwidth=17cm
+\newcommand{\pict}[1]{\includegraphics[scale=0.04]{#1}}
+\newcommand{\bin}[2]{\left( \begin{matrix} #1 \\ #2 \end{matrix} \right)}
+\newcommand{\spl}[2]{\{ \begin{matrix} #1 \\ #2 \end{matrix} \}}
+\begin{document}
+Метод подстановки для получения оценок функционалов от функции распределения генеральной совокупности \par 
+Идея в замене в функционале функции $F$ на функцию $F_n$, или в замене распределения $P$ на выборочное распределение $P_n$ \par 
+Оценивание моментов генеральной совокупности \par 
+$\xi \sim P, \alpha_k = E\xi^k$ - $k$-ый выборочный момент, $\mu_k = E(\xi-\alpha_1)^k$ - $k$-ый выборочный центральный момент \par 
+Выразим их с помощью $P$, сделаем замену, и получим оценки \par 
+$\alpha_k = \int\limits_{\mathbb{R}^1}x^kdP$ \par 
+$A_k = \int\limits_{\mathbb{R}^1}x^kdP_n = \frac{1}{n}\sum\limits_{i = 1}^nX_i^k$, $A_k$ - оценка для $\alpha_k$ \par 
+$\overline{X} = A_1 = \frac{1}{n}\sum\limits_{i = 1}^nX_i$ называется выборочным средним \par 
+$\mu_k = \int\limits_{\mathbb{R}^1}(x - \alpha_1)^kdP = \int\limits_{\mathbb{R}^1}(x - \int\limits_{\mathbb{R}^1}xdP)^kdP$ \par 
+$M_k = \int\limits_{\mathbb{R}^1}(x - \int\limits_{\mathbb{R}^1}xdP_n)^kdP_n$ \par 
+$M_k = \frac{1}{n}\sum\limits_{i = 1}^n(X_i - \overline{X})^k = \overline{(X - \overline{X})^k}$ \par 
+$S_n^2 = M_2 = \overline{(X - \overline{X})^2}$ называется выборочной дисперсией \par 
+$S_n^2 = \overline{X^2} - \overline{X}^2$ \par 
+$M_k = \overline{\sum\limits_{i = 0}^kC_k^iX^i\cdot (-1)^{k - i}(\overline{X})^{k-i}} = \sum\limits_{i = 0}^k \overline{(-1)^{k - i} C_k^i X^i \cdot (\overline{X})^{k - i}} = \sum\limits_{i = 0}^k (-1)^{k - i} C_k^i \overline{X^i} \cdot (\overline{X})^{k - i}$ \par 
+Проверка для $k=2$: $(\overline{X})^2 - 2\overline{X}\cdot\overline{X} + \overline{X^2} = \overline{X^2} - (\overline{X})^2 = \delta_n^2$ \par 
+Свойства оценок: \par 
+1) Свойство несмещённости оценок моментов \par 
+$EA_k = E(\frac{1}{n}\sum\limits_{i = 1}^nX_i^k) = \frac{1}{n}\sum\limits_{i = 1}^nEX_i^k = \frac{1}{n}\sum\limits_{i = 1}^n \alpha_k = \alpha_k $ \par 
+$A_k$ - несмещённая оценка для $\alpha_k$ \par 
+$EM_2 = E\overline{X^2} - E(\overline{X})^2 = \alpha_2 - E(\overline{X})^2$ \par 
+$E(\overline{X})^2 = E(\frac{1}{n}\sum\limits_{i = 1}^nX_i)(\frac{1}{n}\sum\limits_{j = 1}^nX_j) = \frac{1}{n^2}\sum\limits_{i = 1}^n\sum\limits_{j = 1}^nEX_iX_j = \frac{1}{n^2}(nEX_i^2 + n(n-1)EX_iX_j) = \frac{1}{n}\alpha_2 + \frac{n-1}{n}\alpha_1^2 = \frac{1}{n}(\alpha_2 - \alpha_1^2) + \alpha_1^2 = \frac{\sigma^2}{n} + \alpha_1^2$ \par 
+$EM_2 = \alpha_2 - \alpha_1^2 - \frac{\sigma^2}{n} = \sigma^2 - \frac{\sigma^2}{n}$ \par 
+Смещение оценки $M_2$ для $\mu_2$ есть $-\frac{\sigma^2}{n}$ - средняя ошибка \par 
+Также можно определить качество оценки средним разбросом, то есть дисперсией \par 
+$DA_k = D(\frac{1}{n}\sum\limits_{i = 1}^nX_i^k) = \frac{1}{n^2}\sum\limits_{i = 1}^nDX_i^k = \frac{1}{n}DX_1^k = \frac{1}{n}(EX_1^{2k} - (EX_1^k)^2)$ \par
+$DA_k = \frac{1}{n}(\alpha_{2k} - \alpha_k^2)$ \par 
+$DS_n^2$ посчитать сложнее, задача на семинар \par 
+2) Свойство состоятельности оценок моментов \par 
+$A_{k, n} := A_k$ \par 
+$A_{k, n} = \frac{1}{n}\sum\limits_{i = 1}^nX_i^k \rightarrow_{n \rightarrow \infty}^{\mathbb{P}} EX_1^k = \alpha_k$ \par 
+Выборочный момент $A_k$ - состоятельная оценка для $\alpha_k$ \par 
+Для выборочных центральных моментов понадобится лемма \par 
+Пусть имеются независимые случайные величины $\eta_1(n), \ldots, \eta_k(n)$, и $\forall i$ $\eta_i(n) \rightarrow_{n \rightarrow \infty}^{\mathbb{P}} c_i = const$ и пусть $f(x_1, \ldots, x_k)$ - функция, непрерывная в окрестности точки $(c_1, \ldots, c_n)$. \par 
+Тогда $f(\eta_1(n), \ldots, \eta_k(n)) \rightarrow_{n \rightarrow \infty}^{\mathbb{P}} f(c_1, \ldots, c_k)$ \par 
+Доказательство \par 
+$C_{n, \epsilon} = \lbrace \omega|$ $|f(\eta_1(n), \ldots, \eta_k(n)) - f(c_1, \ldots, c_k)| > \epsilon\rbrace$ \par 
+? $\mathbb{P}(C_{n, \epsilon}) \rightarrow_{n \rightarrow \infty} 0$ \par 
+$\eta_i(n) \rightarrow^{\mathbb{P}} c_i$, то есть $\forall \delta_i > 0\ \mathbb{P}(\lbrace | \eta_i(n) - c_i| > \delta_i \rbrace) \rightarrow_{n \rightarrow \infty} 0$ \par 
+По непрерывности $\forall \epsilon > 0\ \exists \delta_i > 0:$ при $|x_i - c_i| < \delta_i\ |f(x_1, \ldots, x_k) - f(c_1, \ldots, c_k)| < \epsilon$ \par 
+Событие $C_{n, \epsilon}$ наступает, если $|\eta_i(n)-c_i| > \delta_i$ для некоторого $i$ \par 
+$C_{n, \epsilon} \subset \bigcup\limits_{i=1}^k \lbrace |\eta_i(n)-c_i| > \delta_i \rbrace$ \par 
+$\mathbb{P}(C_{n, \epsilon}) \leq \sum\limits_{i=1}^k \mathbb{P}(\lbrace |\eta_i(n)-c_i| > \delta_i \rbrace) \rightarrow_{n \rightarrow \infty} 0$ - QED \par
+$S_n^2 = A_{2, n} - (A_{1, n})^2 = f(A_{1, n}, A_{2, n})$, где $f(x_1, x_2) = x_2 - x_1^2$, $f$ непрерывна в точке $(\alpha_1, \alpha_2)$ \par
+По лемме $S_n^2 \rightarrow_{n \rightarrow \infty}^{\mathbb{P}} \alpha_2 - \alpha_1^2 = \sigma^2$ \par 
+Выборочная дисперсия является состоятельной оценкой дисперсии генеральной совокупности \par 
+$\gamma = \frac{\mu_3}{\sigma^3} = \frac{\mu_3}{(\alpha_2 - \alpha_1^2)^{3/2}}$ - коэффициент асимметрии (отвечает за перекос распределения)\par 
+$\kappa = \frac{\mu_4}{\sigma^4} - 3$ - коэффициент эксцесса (отвечает за ширину распределения)\par 
+$\Gamma = \frac{M_3}{S_n^3}$, $K = \frac{M_4}{S_n^4} - 3 = \frac{\overline{(X - \overline{X})^4}}{\overline{(X - \overline{X})^2}^2} - 3$ - оценки для коэффициентов \par 
+$\tilde{S_n^2} = \frac{n}{n-1} S_n^2 = \frac{1}{n-1} \sum\limits_{i = 1}^n(X_i - \overline{X})^2$ - исправленная выборочная дисперсия, несмещённая оценка для дисперсии \par 
+3) Асимптотическая нормальность оценок моментов \par 
+$A_{k, n}$ - оценка $\alpha_k$, $DA_{k, n} = \frac{\alpha_{2k} - \alpha_k^2}{n}$ \par 
+$A_{k, n} - \alpha_k = \frac{1}{n}\sum\limits_{i = 1}^n(X_i^k - \alpha_k)$ \par 
+$\frac{\sqrt{n}(A_{k, n} - \alpha_k)}{\sqrt{\alpha_{2k} - \alpha_k^2}} = \frac{\sum(X_i^k - \alpha_k)}{\sqrt{n}\sqrt{DX_1^k}} \rightarrow_{n\rightarrow\infty}^d \xi \sim N(0, 1)$ - по центральной предельной теореме \par 
+$A_{k, n} \sim P = N(\alpha_k, \frac{\alpha_{2k} - \alpha_k^2}{n})$ \par 
+Точечное оценивание параметров распределения \par 
+$F(x, \theta)$ - статистическая модель, $\theta$ - параметр \par 
+Примеры: \par 
+1) Равномерная модель $R(\theta)$, $\theta \in \Theta = (0; +\infty)$ \par 
+Имеет плотность распределения $f(x, \theta) = \left\lbrace\begin{matrix}
+\frac{1}{\theta}, & x \in [0, \theta] \\
+0, & x !\in [0; \theta]
+\end{matrix} \right.$ \par 
+2) Нормальная модель $N(\theta_1, \theta_2^2)$, $(\theta_1, \theta_2) \in \Theta = \mathbb{R}^1 \times (0; +\infty)$ \par 
+$f(x, \theta_1, \theta_2^2) = \frac{1}{\sqrt{2\pi}\theta_2}\exp(-\frac{1}{2}\frac{(x - \theta_1)^2}{\theta_2^2})$ \par 
+3) $N(a, \theta^2)$ - нормальная модель с известным средним \par 
+4) $N(\theta, \sigma^2)$ - нормальная модель с известной дисперсией \par 
+5) Пуассоновская модель $\Pi(\theta)$, $\theta > 0$ \par 
+$f(x, \theta) = \frac{\theta^x}{x!}e^{-x}$, $x = 0, 1, \ldots$, мера дискретная \par
+6) $Bi(k, \theta)$ - биномиальная модель, $\theta \in (0; 1)$ \par 
+$f(x, \theta) = C_k^x\theta^x(1 - \theta)^{k - x}$, $x = 0, 1, \ldots, k$ (среди $k$ испытаний ровно $x$ успехов, $\theta$ - вероятность успеха) \par 
+6') $Bi(1, \theta)$, $f(1, \theta) = \theta^x(1 - \theta)^{1-x}$, $x = 0, 1$ \par 
+7) $\overline{Bi(r, \theta)}$ - отрицательная биномиальная модель, $\theta \in (0; 1)$ \par
+$f(x, \theta) = C_{x+r-1}^x\theta^x(1 - \theta)^r$ (до наступления $r$ успехов было ровно $x$ неудач, $\theta$ - вероятность неудачи) \par   
+8) $\overline{Bi(1, \theta)}$ - геометрическое распределение \par 
+9) Гамма-распределение, $\lambda > 0$ \par 
+$f(x, \theta) = \frac{x^{\lambda-1}e^{-\frac{x}{\theta}}}{\Gamma(\lambda)\cdot\theta^{\lambda}}$, $\theta > 0$ \par 
+Случайные величины, зависящие только от выборки, а не от параметра, будем называть статистиками \par 
+Пусть $\tau(\theta)$ - функция от параметра \par
+$T$ - статистику, оценивающую $\tau(\theta)$ будем называть оценкой для $\tau(\theta)$ (оценка не должна содержать параметр) \par 
+$T^*$ - оптимальная оценка, если \par 
+1)$\forall \theta$ $E_{\theta}T^* = \tau(\theta)$ \par
+2) для любой другой несмещённой оценки $T$ $D_{\theta}T^* \leq D_{\theta}T$ \par 
+Значения $E$ и $D$ зависят от параметра, даже если оценки от него не зависят \par 
+Оценка называется эффективной, если её дисперсия совпадает с нижней границей дисперсий всех несмещённых оценок \par 
+Свойства оптимальных оценок \par 
+Теорема 1 \par
+Оптимальная оценка, если она существует, является единственной \par 
+Доказательство \par 
+Пусть $T_1$ и $T_2$ - оптимальные оценки \par 
+$E_{\theta}T_1 = E_{\theta}T_2 = \tau(\theta)$, $D_{\theta}T_1 = D_{\theta}T_2 = v(\theta)$ \par 
+$T = \frac{T_1 + T_2}{2}$, $E_{\theta}T = \tau(\theta)$, $D_{\theta}T \geq v(\theta)$ \par 
+$T = T_1 = T_2$ - надо доказать \par 
+$D_{\theta}T = \frac{1}{4}(D_{\theta}T_1 + D_{\theta}T_2) + 2cov(T_1, T_2) \geq v(\theta)$ \par 
+$2v(\theta) + 2cov(T_1, T_2) \geq 4v(\theta)$ \par
+$cov(T_1, T_2) \geq v(\theta)$ \par 
+$|cov(T_1, T_2)| \leq \sqrt{D_{\theta_1}D_{\theta_2}} = v(\theta)$ \par 
+Имеет место равенство в неравенстве Коши-Буняковского-Шварца: $cov(T_1, T_2) = v(\theta)$ \par 
+Случайные величины $T_1 - \tau(\theta)$ и $T_2 - \tau(\theta)$ линейно зависимы, $\exists c \neq 0$, $T_1 - \tau(\theta) = c(T_2 - \tau(\theta))$ \par 
+$D_{\theta}T_1 = c^2D_{\theta}T_2 \Rightarrow c^2 = 1$ \par 
+$v(\theta) = cov(T_1, T_2) = E(T_1 - \tau(\theta))(T_2 - \tau(\theta)) = cv(\theta) \Rightarrow c = 1$ - QED \par 
+Теорема 2 \par 
+Пусть $T_1^*$ - оптимальная оценка для $\tau_1(\theta)$ и $T_2^*$ - оптимальная оценка для $\tau_2(\theta)$ \par 
+Тогда $\forall c_1, c_2\ \tilde{T} = c_1T_1^* + c_2T_2^*$ - оптимальная оценка для $\tau = c_1\tau_1(\theta) + c_2\tau_2(\theta)$ \par 
+Доказательство \par 
+$\tilde{T}$ - статистика, несмещённая для $\tau$ \par 
+Пусть $T$ - несмещённая оценка для $\tau(\theta)$ \par 
+$D_{\theta}T = D_{\theta}(T - \tilde{T} + \tilde{T}) = D_{\theta}(T - \tilde{T}) + D_{\theta}\tilde{T} + 2cov(T - \tilde{T}, \tilde{T}) \geq D_{\theta}\tilde{T} + 2cov(T - \tilde{T}, \tilde{T})$ \par
+Надо доказать, что $cov(T - \tilde{T}, \tilde{T}) = 0$ \par 
+Заметим, что $E_{\theta}(T - \tilde{T}) = 0$ \par 
+$\widehat{T_1} = T_1^* + \lambda(T - \tilde{T})$ - несмещённая оценка $\tau_1(\theta)$ \par 
+$D_{\theta}\widehat{T_1} \geq D_{\theta}T_1^*\ \forall \lambda \in \mathbb{R}^1$ \par 
+$D_{\theta}\widehat{T_1} = D_{\theta}T_1^* + \lambda^2D_{\theta}(T - \tilde{T}) + 2\lambda cov(T_1^*, T - \tilde{T}) \geq D_{\theta}T_1^*$ \par
+$\lambda^2D_{\theta}(T - \tilde{T}) + 2\lambda cov(T_1^*, T - \tilde{T}) \geq 0$ - имеет 2 корня и всегда неотрицателен $\Rightarrow$ корни совпадают $\Rightarrow\ cov(T_1^*, T - \tilde{T}) = 0$ \par 
+$cov(\tilde{T}, T - \tilde{T}) = c_1 cov(T_1^*, T - \tilde{T}) + c_2 cov(T_2^*, T - \tilde{T}) = 0$ - QED \par 
+\end{document}

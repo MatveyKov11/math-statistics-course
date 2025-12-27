@@ -1,0 +1,49 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[OT1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\topmargin=-0.54cm
+\textheight=25.7cm
+\oddsidemargin=-0.04cm
+\textwidth=17cm
+\newcommand{\pict}[1]{\includegraphics[scale=0.04]{#1}}
+\newcommand{\bin}[2]{\left( \begin{matrix} #1 \\ #2 \end{matrix} \right)}
+\newcommand{\spl}[2]{\{ \begin{matrix} #1 \\ #2 \end{matrix} \}}
+\begin{document}
+Выборкой из генеральной совокупности объёма $n$ с распределением $P$ называется последовательность $X_1, \ldots, X_n$ н. о. р. с. в. (независимых одинаково распределённых случайных величин) с распределением $P$ \par 
+Обозначение: $Low(X_i) = P$, или $X_i \sim P$. \par 
+$X = (X_1, \ldots, X_n)^T$ \par 
+$x_i = X_i(\omega)$, $\omega$ (элементарное событие) одно и то же при всех $i$, мы определяем $\Omega$ (пространство элементарных событий) с помощью проведения опыта \par 
+$x = (x_1, \ldots, x_n)^T$ - всё, с чем имеет дело матстатистика, $x$ тоже называют выборкой, но после опыта \par 
+Упорядоченная выборка называется вариационным рядом $X_{(1)} \leq X_{(2)} \leq \ldots \leq X_{(n)}$, члены этого ряда называются порядковыми статистиками: $X_{(k)}$ - $k$-ая порядковая статистика \par 
+Если $\omega$ фиксированно, то на данной выборке можно построить распределение, оно и его функция распределения будут обычными. Если $\omega$ не зафиксированно, то распределение и функция распределения будут случайными \par 
+$F_n(x) = \frac{1}{n}\sum\limits_{i=1}^{n}\chi(x - X_i) = \frac{K}{n}$ - оценка распределения, где $K$ - число элементов выборки, меньших $x$, $\chi$ - ступенька Хевисайда, $\chi(x) = \left\lbrace \begin{matrix}
+1, & x > 0 \\
+0, & x \leq 0
+\end{matrix}\right.$ \par 
+$F_n(x)$ - эмпирическая функция распределения \par 
+$EF_n(x) = \frac{1}{n}\sum\limits_{i=1}^{n}E\chi(x - X_i) = \frac{1}{n}\sum\limits_{i=1}^{n}\mathbb{P}(\{X_i < x\}) = \frac{1}{n}\sum\limits_{i=1}^{n}F(x) = F(x)$ - матожидание функции равномерного распределения совпадает с функцией распределения генеральной совокупности \par 
+$\mathbb{P}(\{ X_{(k)} \in x, $[$x + dx$)$) ) = $ *$k-1$ элементов $< x$, один элемент в интервале (всего элементов $n$)* $= n\mathbb{P}(\{ X_1 \in x, x+dx; \text{ровно } k-1 \text{ элементов выборки } < x\} ) = P($[$x, x+dx$)$)C_{n-1}^{k-1}(F(x))^{k-1}(1 - F(x))^{n-k} + o(dx)$, устремим $dx \rightarrow 0$ и получим плотность $k$-ой порядковой статистики \par
+$f_{(k)} = nf(x)C_{n-1}^{k-1}(F(x))^{k-1}(1 - F(x))^{n-k}$ \par
+Свойства $F_n(x)$ - эмпирической функции распределения: \par
+1)$EF_n(x) = F(x)$ $\forall x \in \mathbb{R}^1$ \par 
+Свойство 1) - свойство несмещённости оценки, $F_n(x)$ в среднем совпадает с $F(x)$ \par 
+2) По ЗБЧ (закону больших чисел) $F_n(x) \rightarrow^{\mathbb{P}} F(x)$ \par
+т. е. $\forall \epsilon > 0\ \mathbb{P}(\{|F_n(x) - F(x)| > \epsilon\}) \rightarrow_{n \rightarrow \infty} 0$ \par 
+Свойство 2) - свойство состоятельности оценки, $F_n(x)$ близко к $F(x)$ в каком-то смысле \par 
+3)$\sqrt{n}(F_n(x)-F(x)) = \frac{1}{\sqrt{n}}\sum\limits_{i=1}^{n}(\chi(x - X_i)-F(x)) \rightarrow^d N(0, \sigma^2)$ по центральной предельной теореме, где $\sigma^2 = E\chi^2(x - X_i) - (F(x))^2 = F(x)(1 - F(x))$ \par
+Свойство 3) - свойство асимптотической нормальности, позволяет оценивать погрешность \par 
+4) Теорема Гливенко \par 
+$\sup\limits_{x\in\mathbb{R}^1}|F_n(x) - F(x)| \rightarrow_{n \rightarrow \infty} 0$ с вероятностью 1 \par 
+5) Теорема Колмогорова \par 
+$\sqrt{n}\sup\limits_{x\in\mathbb{R}^1}|F_n(x) - F(x)| \rightarrow^{d} \varsigma \sim K$ \par
+$\varsigma$ имеет распределение Колмогорова, $\mathbb{P}(\varsigma < t) = \sum\limits_{j=-\infty}^{+\infty}(-1)^i e^{-2j^2t^2}$ \par 
+Метод подстановки для получения оценок функционалов от функции распределения генеральной совокупности \par 
+Идея в замене в функционале функции $F$ на функцию $F_n$ \par 
+Оценивание моментов генеральной совокупности \par 
+\end{document}
