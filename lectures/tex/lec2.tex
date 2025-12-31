@@ -29,13 +29,13 @@ $M_k = \frac{1}{n}\sum\limits_{i = 1}^n(X_i - \overline{X})^k = \overline{(X - \
 $S_n^2 = M_2 = \overline{(X - \overline{X})^2}$ называется выборочной дисперсией \par 
 $S_n^2 = \overline{X^2} - \overline{X}^2$ \par 
 $M_k = \overline{\sum\limits_{i = 0}^kC_k^iX^i\cdot (-1)^{k - i}(\overline{X})^{k-i}} = \sum\limits_{i = 0}^k \overline{(-1)^{k - i} C_k^i X^i \cdot (\overline{X})^{k - i}} = \sum\limits_{i = 0}^k (-1)^{k - i} C_k^i \overline{X^i} \cdot (\overline{X})^{k - i}$ \par 
-Проверка для $k=2$: $(\overline{X})^2 - 2\overline{X}\cdot\overline{X} + \overline{X^2} = \overline{X^2} - (\overline{X})^2 = \delta_n^2$ \par 
+Проверка для $k=2$: $(\overline{X})^2 - 2\overline{X}\cdot\overline{X} + \overline{X^2} = \overline{X^2} - (\overline{X})^2 = S_n^2$ \par 
 Свойства оценок: \par 
 1) Свойство несмещённости оценок моментов \par 
 $EA_k = E(\frac{1}{n}\sum\limits_{i = 1}^nX_i^k) = \frac{1}{n}\sum\limits_{i = 1}^nEX_i^k = \frac{1}{n}\sum\limits_{i = 1}^n \alpha_k = \alpha_k $ \par 
 $A_k$ - несмещённая оценка для $\alpha_k$ \par 
 $EM_2 = E\overline{X^2} - E(\overline{X})^2 = \alpha_2 - E(\overline{X})^2$ \par 
-$E(\overline{X})^2 = E(\frac{1}{n}\sum\limits_{i = 1}^nX_i)(\frac{1}{n}\sum\limits_{j = 1}^nX_j) = \frac{1}{n^2}\sum\limits_{i = 1}^n\sum\limits_{j = 1}^nEX_iX_j = \frac{1}{n^2}(nEX_i^2 + n(n-1)EX_iX_j) = \frac{1}{n}\alpha_2 + \frac{n-1}{n}\alpha_1^2 = \frac{1}{n}(\alpha_2 - \alpha_1^2) + \alpha_1^2 = \frac{\sigma^2}{n} + \alpha_1^2$ \par 
+$E(\overline{X})^2 = E(\frac{1}{n}\sum\limits_{i = 1}^nX_i)(\frac{1}{n}\sum\limits_{j = 1}^nX_j) = \frac{1}{n^2}\sum\limits_{i = 1}^n\sum\limits_{j = 1}^nEX_iX_j = \frac{1}{n^2}(\sum\limits_{i=j} EX_i^2 + \sum\limits_{i \neq j} EX_iX_j) = \frac{1}{n^2}(nEX_i^2 + n(n-1)EX_iX_j) = \frac{1}{n}\alpha_2 + \frac{n-1}{n}\alpha_1^2 = \frac{1}{n}(\alpha_2 - \alpha_1^2) + \alpha_1^2 = \frac{\sigma^2}{n} + \alpha_1^2$ \par 
 $EM_2 = \alpha_2 - \alpha_1^2 - \frac{\sigma^2}{n} = \sigma^2 - \frac{\sigma^2}{n}$ \par 
 Смещение оценки $M_2$ для $\mu_2$ есть $-\frac{\sigma^2}{n}$ - средняя ошибка \par 
 Также можно определить качество оценки средним разбросом, то есть дисперсией \par 
@@ -50,9 +50,9 @@ $A_{k, n} = \frac{1}{n}\sum\limits_{i = 1}^nX_i^k \rightarrow_{n \rightarrow \in
 Пусть имеются независимые случайные величины $\eta_1(n), \ldots, \eta_k(n)$, и $\forall i$ $\eta_i(n) \rightarrow_{n \rightarrow \infty}^{\mathbb{P}} c_i = const$ и пусть $f(x_1, \ldots, x_k)$ - функция, непрерывная в окрестности точки $(c_1, \ldots, c_n)$. \par 
 Тогда $f(\eta_1(n), \ldots, \eta_k(n)) \rightarrow_{n \rightarrow \infty}^{\mathbb{P}} f(c_1, \ldots, c_k)$ \par 
 Доказательство \par 
-$C_{n, \epsilon} = \lbrace \omega|$ $|f(\eta_1(n), \ldots, \eta_k(n)) - f(c_1, \ldots, c_k)| > \epsilon\rbrace$ \par 
+$C_{n, \epsilon} = \lbrace \omega\ |\ |f(\eta_1(n), \ldots, \eta_k(n)) - f(c_1, \ldots, c_k)| > \epsilon\rbrace$ \par 
 ? $\mathbb{P}(C_{n, \epsilon}) \rightarrow_{n \rightarrow \infty} 0$ \par 
-$\eta_i(n) \rightarrow^{\mathbb{P}} c_i$, то есть $\forall \delta_i > 0\ \mathbb{P}(\lbrace | \eta_i(n) - c_i| > \delta_i \rbrace) \rightarrow_{n \rightarrow \infty} 0$ \par 
+$\eta_i(n) \rightarrow^{\mathbb{P}} c_i$, то есть $\forall i \forall \delta_i > 0\ \mathbb{P}(\lbrace | \eta_i(n) - c_i| > \delta_i \rbrace) \rightarrow_{n \rightarrow \infty} 0$ \par 
 По непрерывности $\forall \epsilon > 0\ \exists \delta_i > 0:$ при $|x_i - c_i| < \delta_i\ |f(x_1, \ldots, x_k) - f(c_1, \ldots, c_k)| < \epsilon$ \par 
 Событие $C_{n, \epsilon}$ наступает, если $|\eta_i(n)-c_i| > \delta_i$ для некоторого $i$ \par 
 $C_{n, \epsilon} \subset \bigcup\limits_{i=1}^k \lbrace |\eta_i(n)-c_i| > \delta_i \rbrace$ \par 
@@ -97,7 +97,7 @@ $T$ - статистику, оценивающую $\tau(\theta)$ будем н�
 $T^*$ - оптимальная оценка, если \par 
 1)$\forall \theta$ $E_{\theta}T^* = \tau(\theta)$ \par
 2) для любой другой несмещённой оценки $T$ $D_{\theta}T^* \leq D_{\theta}T$ \par 
-Значения $E$ и $D$ зависят от параметра, даже если оценки от него не зависят \par 
+(Значения $E$ и $D$ зависят от параметра, даже если оценки от него не зависят) \par 
 Оценка называется эффективной, если её дисперсия совпадает с нижней границей дисперсий всех несмещённых оценок \par 
 Свойства оптимальных оценок \par 
 Теорема 1 \par
@@ -107,7 +107,7 @@ $T^*$ - оптимальная оценка, если \par
 $E_{\theta}T_1 = E_{\theta}T_2 = \tau(\theta)$, $D_{\theta}T_1 = D_{\theta}T_2 = v(\theta)$ \par 
 $T = \frac{T_1 + T_2}{2}$, $E_{\theta}T = \tau(\theta)$, $D_{\theta}T \geq v(\theta)$ \par 
 $T = T_1 = T_2$ - надо доказать \par 
-$D_{\theta}T = \frac{1}{4}(D_{\theta}T_1 + D_{\theta}T_2) + 2cov(T_1, T_2) \geq v(\theta)$ \par 
+$D_{\theta}T = \frac{1}{4}(D_{\theta}T_1 + D_{\theta}T_2 + 2cov(T_1, T_2)) \geq v(\theta)$ \par 
 $2v(\theta) + 2cov(T_1, T_2) \geq 4v(\theta)$ \par
 $cov(T_1, T_2) \geq v(\theta)$ \par 
 $|cov(T_1, T_2)| \leq \sqrt{D_{\theta_1}D_{\theta_2}} = v(\theta)$ \par 
