@@ -63,7 +63,7 @@ $S_n^2 = A_{2, n} - (A_{1, n})^2 = f(A_{1, n}, A_{2, n})$, где $f(x_1, x_2) =
 $\gamma = \frac{\mu_3}{\sigma^3} = \frac{\mu_3}{(\alpha_2 - \alpha_1^2)^{3/2}}$ - коэффициент асимметрии (отвечает за перекос распределения)\par 
 $\kappa = \frac{\mu_4}{\sigma^4} - 3$ - коэффициент эксцесса (отвечает за ширину распределения)\par 
 $\Gamma = \frac{M_3}{S_n^3}$, $K = \frac{M_4}{S_n^4} - 3 = \frac{\overline{(X - \overline{X})^4}}{\overline{(X - \overline{X})^2}^2} - 3$ - оценки для коэффициентов \par 
-$\tilde{S_n^2} = \frac{n}{n-1} S_n^2 = \frac{1}{n-1} \sum\limits_{i = 1}^n(X_i - \overline{X})^2$ - исправленная выборочная дисперсия, несмещённая оценка для дисперсии \par 
+$\widetilde{S_n^2} = \frac{n}{n-1} S_n^2 = \frac{1}{n-1} \sum\limits_{i = 1}^n(X_i - \overline{X})^2$ - исправленная выборочная дисперсия, несмещённая оценка для дисперсии \par 
 3) Асимптотическая нормальность оценок моментов \par 
 $A_{k, n}$ - оценка $\alpha_k$, $DA_{k, n} = \frac{\alpha_{2k} - \alpha_k^2}{n}$ \par 
 $A_{k, n} - \alpha_k = \frac{1}{n}\sum\limits_{i = 1}^n(X_i^k - \alpha_k)$ \par 
@@ -117,16 +117,16 @@ $D_{\theta}T_1 = c^2D_{\theta}T_2 \Rightarrow c^2 = 1$ \par
 $v(\theta) = cov(T_1, T_2) = E(T_1 - \tau(\theta))(T_2 - \tau(\theta)) = cv(\theta) \Rightarrow c = 1$ - QED \par 
 Теорема 2 \par 
 Пусть $T_1^*$ - оптимальная оценка для $\tau_1(\theta)$ и $T_2^*$ - оптимальная оценка для $\tau_2(\theta)$ \par 
-Тогда $\forall c_1, c_2\ \tilde{T} = c_1T_1^* + c_2T_2^*$ - оптимальная оценка для $\tau = c_1\tau_1(\theta) + c_2\tau_2(\theta)$ \par 
+Тогда $\forall c_1, c_2\ \widetilde{T} = c_1T_1^* + c_2T_2^*$ - оптимальная оценка для $\tau = c_1\tau_1(\theta) + c_2\tau_2(\theta)$ \par 
 Доказательство \par 
-$\tilde{T}$ - статистика, несмещённая для $\tau$ \par 
+$\widetilde{T}$ - статистика, несмещённая для $\tau$ \par 
 Пусть $T$ - несмещённая оценка для $\tau(\theta)$ \par 
-$D_{\theta}T = D_{\theta}(T - \tilde{T} + \tilde{T}) = D_{\theta}(T - \tilde{T}) + D_{\theta}\tilde{T} + 2cov(T - \tilde{T}, \tilde{T}) \geq D_{\theta}\tilde{T} + 2cov(T - \tilde{T}, \tilde{T})$ \par
-Надо доказать, что $cov(T - \tilde{T}, \tilde{T}) = 0$ \par 
-Заметим, что $E_{\theta}(T - \tilde{T}) = 0$ \par 
-$\widehat{T_1} = T_1^* + \lambda(T - \tilde{T})$ - несмещённая оценка $\tau_1(\theta)$ \par 
+$D_{\theta}T = D_{\theta}(T - \widetilde{T} + \widetilde{T}) = D_{\theta}(T - \widetilde{T}) + D_{\theta}\widetilde{T} + 2cov(T - \widetilde{T}, \widetilde{T}) \geq D_{\theta}\widetilde{T} + 2cov(T - \widetilde{T}, \widetilde{T})$ \par
+Надо доказать, что $cov(T - \widetilde{T}, \widetilde{T}) = 0$ \par 
+Заметим, что $E_{\theta}(T - \widetilde{T}) = 0$ \par 
+$\widehat{T_1} = T_1^* + \lambda(T - \widetilde{T})$ - несмещённая оценка $\tau_1(\theta)$ \par 
 $D_{\theta}\widehat{T_1} \geq D_{\theta}T_1^*\ \forall \lambda \in \mathbb{R}^1$ \par 
-$D_{\theta}\widehat{T_1} = D_{\theta}T_1^* + \lambda^2D_{\theta}(T - \tilde{T}) + 2\lambda cov(T_1^*, T - \tilde{T}) \geq D_{\theta}T_1^*$ \par
-$\lambda^2D_{\theta}(T - \tilde{T}) + 2\lambda cov(T_1^*, T - \tilde{T}) \geq 0$ - имеет 2 корня и всегда неотрицателен $\Rightarrow$ корни совпадают $\Rightarrow\ cov(T_1^*, T - \tilde{T}) = 0$ \par 
-$cov(\tilde{T}, T - \tilde{T}) = c_1 cov(T_1^*, T - \tilde{T}) + c_2 cov(T_2^*, T - \tilde{T}) = 0$ - QED \par 
+$D_{\theta}\widehat{T_1} = D_{\theta}T_1^* + \lambda^2D_{\theta}(T - \widetilde{T}) + 2\lambda cov(T_1^*, T - \widetilde{T}) \geq D_{\theta}T_1^*$ \par
+$\lambda^2D_{\theta}(T - \widetilde{T}) + 2\lambda cov(T_1^*, T - \widetilde{T}) \geq 0$ - имеет 2 корня и всегда неотрицателен $\Rightarrow$ корни совпадают $\Rightarrow\ cov(T_1^*, T - \widetilde{T}) = 0$ \par 
+$cov(\widetilde{T}, T - \widetilde{T}) = c_1 cov(T_1^*, T - \widetilde{T}) + c_2 cov(T_2^*, T - \widetilde{T}) = 0$ - QED \par 
 \end{document}

@@ -42,18 +42,18 @@ $L(x, \theta) = \prod\limits_{i = 1}^nf(x_i, \theta)$ - плотность ра�
 Вклад выборки ($\theta$ - скалярная величина) \par 
 $U(X, \theta) = \frac{\partial}{\partial \theta} \ln L(X, \theta)= \sum\limits_{i = 1}^n \frac{(f(X_i, \theta))_{\theta}'}{f(X_i, \theta)}$ - сумма вкладов элементов выборки \par 
 $U_n(X, \theta) = \sum\limits_{i = 1}^nU_1(X_i, \theta)$ \par 
-$EU_1(X_1, \theta) = E\frac{\partial}{\partial \theta} \ln f(X_1, \theta) = \int\limits_{\mathbb{R^1}} \frac{f_{\theta}'(X_1, \theta)}{f(X_1, \theta)}f(X_1, \theta)\lambda(dx) = \int\limits_{\mathbb{R^1}} f_{\theta}'(X_1, \theta)\lambda(dx) = (\int\limits_{\mathbb{R^1}} f(X_1, \theta)\lambda(dx))_{\theta}' = (1)_{\theta}' = 0$ \par 
+$EU_1(X_1, \theta) = E\frac{\partial}{\partial \theta} \ln f(X_1, \theta) = \int\limits_{\mathbb{R}^1} \frac{f_{\theta}'(X_1, \theta)}{f(X_1, \theta)}f(X_1, \theta)\lambda(dx) = \int\limits_{\mathbb{R}^1} f_{\theta}'(X_1, \theta)\lambda(dx) = (\int\limits_{\mathbb{R}^1} f(X_1, \theta)\lambda(dx))_{\theta}' = (1)_{\theta}' = 0$ \par 
 $i_n(\theta) = D_{\theta}U_n(X, \theta)$ - информационное количество Фишера \par 
 $i_n(\theta) = ni_1(\theta)$, так как $X_i$ независимые \par 
-$i_1(\theta) = \int\limits_{\mathbb{R^1}}U_1^2(x, \theta)f(x, \theta)\lambda(dx) = \int\limits_{\mathbb{R^1}}\frac{(f_{\theta}^2(x, \theta))^2}{f(x, \theta)}\lambda(dx)$ \par 
+$i_1(\theta) = \int\limits_{\mathbb{R}^1}U_1^2(x, \theta)f(x, \theta)\lambda(dx) = \int\limits_{\mathbb{R}^1}\frac{(f_{\theta}^2(x, \theta))^2}{f(x, \theta)}\lambda(dx)$ \par 
 Если плотность имеет 2-ые производные по параметру, то есть ещё формулы вычисления \par 
-$\int\limits_{\mathbb{R^1}}\frac{\partial^2}{\partial \theta^2} \ln f(x, \theta) \cdot f(x, \theta) \lambda(dx) = \frac{\partial}{\partial \theta} \ln f(x, \theta) \cdot f(x, \theta) |_{-\infty}^{+\infty} - \int\limits_{\mathbb{R^1}}(\frac{\partial}{\partial \theta} \ln f(x, \theta))^2f(x, \theta)\lambda(dx) = -i_1(\theta)$ - пользуемся интегрированием по частям, плотность на $\pm \infty$ обращается в $0$ \par 
+$\int\limits_{\mathbb{R}^1}\frac{\partial^2}{\partial \theta^2} \ln f(x, \theta) \cdot f(x, \theta) \lambda(dx) = \frac{\partial}{\partial \theta} \ln f(x, \theta) \cdot f(x, \theta) |_{-\infty}^{+\infty} - \int\limits_{\mathbb{R}^1}(\frac{\partial}{\partial \theta} \ln f(x, \theta))^2f(x, \theta)\lambda(dx) = -i_1(\theta)$ - пользуемся интегрированием по частям, плотность на $\pm \infty$ обращается в $0$ \par 
 $i_1(\theta) = -E\frac{\partial^2}{\partial \theta^2} \ln f(X_1, \theta)$ \par 
 Пример 1 \par 
 $Bi(1, \theta)$ - модель испытаний Бернулли \par 
 $L(X_1, \theta) = \theta^{X_1}(1 - \theta)^{1 - X_1}$ \par 
 $L(X, \theta) = \theta^{\sum X_i}(1 - \theta)^{n - \sum X_i} = \theta^{n\overline{X}}(1 - \theta)^{n(1 - \overline{X})}$ \par 
-$U(X, \theta) = \frac{\partial}{\partial \theta} \ln L(X, \theta) = \frac{\partial}{\partial \theta} (n\overline{X}\ln \theta + n(1 - \overline{X}\ln (1 - \theta)) = n\overline{X}\frac{1}{\theta} - n(1 - \overline{X}\frac{1}{1 - \theta} = \frac{n\overline{X}}{\theta (1 - \theta)} - \frac{n}{1 - \theta}$ \par 
+$U(X, \theta) = \frac{\partial}{\partial \theta} \ln L(X, \theta) = \frac{\partial}{\partial \theta} (n\overline{X}\ln \theta + n(1 - \overline{X}\ln (1 - \theta)) = n\overline{X}\frac{1}{\theta} - n(1 - \overline{X})\frac{1}{1 - \theta} = \frac{n\overline{X}}{\theta (1 - \theta)} - \frac{n}{1 - \theta}$ \par 
 Проверка: $EU(X, \theta) = E(\frac{n\overline{X}}{\theta (1 - \theta)} - \frac{n}{1 - \theta}) = \frac{n\theta}{\theta(1 - \theta)} - \frac{n}{1 - \theta} = 0$ \par 
 $i_n(\theta) = D(\frac{n\overline{X}}{\theta (1 - \theta)} - \frac{n}{1 - \theta}) = D\frac{n\overline{X}}{\theta (1 - \theta)} = \frac{n^2}{\theta^2(1 - \theta)^2}D\overline{X} = \frac{n^2}{\theta^2(1 - \theta)^2}\frac{1}{n^2}nDX_1 = \frac{n}{\theta (1 - \theta)}$ ($DX_1 = \theta (1 - \theta)$) \par 
 Пример 2 \par 

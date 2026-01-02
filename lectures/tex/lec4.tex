@@ -30,14 +30,14 @@ $\tau'(\theta) = \int\limits_{\mathbb{R}^n}T^*(x)U(x, \theta)L_n(x, \theta)\lamb
 $\tau'(\theta) = E_{\theta}(T^*U(X, \theta)) = cov(T^*, U(X, \theta)) = cov(T^*, \frac{1}{a}(T^* - \tau(\theta))) = \frac{D_{\theta}T^*}{a}$ \par 
 Отсюда $D_{\theta}T^* = a(\theta)\tau'(\theta) = \frac{1}{nA'(\theta)}\cdot(-\frac{C'(\theta)}{A'(\theta)})'$ - формула для дисперсии \par 
 Пример 1 - $N(\alpha, \theta^2)$ \par 
-$f(x, \theta) = \frac{1}{\sqrt{2\pi}\theta}\exp(-\frac{1}{2\theta^2}(x - \alpha)^2) = \exp(-\frac{1}{2\theta^2}(x - \alpha)^2) - \ln\theta - \ln\sqrt{2\pi})$ \par 
+$f(x, \theta) = \frac{1}{\sqrt{2\pi}\theta}\exp(-\frac{1}{2\theta^2}(x - \alpha)^2) = \exp(-\frac{1}{2\theta^2}(x - \alpha)^2 - \ln\theta - \ln\sqrt{2\pi})$ \par 
 $A(\theta) = -\frac{1}{2\theta^2}$, $B(x) = (x - \alpha)^2$, $C(\theta) = -\ln\theta$, $D(x) = -\ln\sqrt{2\pi}$ \par 
 $\tau(\theta) = - \frac{(-\ln\theta)'}{(-\frac{1}{2\theta^2})'} = \frac{\frac{1}{\theta}}{\frac{1}{\theta^3}} = \theta^2$ \par 
-Эффективное оценивание возможно для $\theta$ \par 
+Эффективное оценивание возможно для $\theta^2$ \par 
 $T^*(X) = \frac{1}{n}\sum\limits_{i = 1}^n(X_i - \alpha)^2$ \par 
 $D_{\theta}T^* = a(\theta)\tau'(\theta) = \frac{1}{n\frac{1}{\theta^3}}2\theta = \frac{2}{n}\theta^4$ - наилучшее значение \par 
 Пример 2 - $Bi(k, \theta)$ - $x$ - число успехов среди $k$ испытаний \par 
-$f(x, \theta) = C_k^x\theta^x(1 - \theta)^{k - x} = \exp(x\ln\theta + (k - x)\ln(1 - \theta) + \ln C_k^x) = \exp((\ln\theta - \ln(1 - \theta))x) + k\ln(1 - \theta) + \ln C_k^x)$ \par 
+$f(x, \theta) = C_k^x\theta^x(1 - \theta)^{k - x} = \exp(x\ln\theta + (k - x)\ln(1 - \theta) + \ln C_k^x) = \exp((\ln\theta - \ln(1 - \theta))x + k\ln(1 - \theta) + \ln C_k^x)$ \par 
 $\tau(\theta) = - \frac{C'(\theta)}{A'(\theta)} = \frac{-\frac{k}{1 - \theta}}{\frac{1}{\theta} + \frac{1}{1 - \theta}} = k\theta$ \par 
 $T^* = \frac{1}{n}\sum\limits_{i = 1}^nX_i = \overline{X}$ \par 
 $D_{\theta}T^* = \frac{1}{n}DX_1 = \frac{k\theta(1 - \theta)}{n}$ \par 
@@ -52,18 +52,19 @@ $D_{\theta}\tilde{T} = \frac{1}{n}DX_1 = \frac{\theta(1 - \theta)}{kn}$ \par
 И пусть $T^*(X_1)$ - эффективная оценка некоторой функции $\tau(\theta)$ \par 
 Тогда для неё выполнено условие Рао-Крамера \par 
 $T^*(X_1) - \tau(\theta) = a_1(\theta)U(X_1, \theta)$ ($U$ - вклад одного элемента выборки) \par 
-$T^*(X_1) - \tau(\theta) = a_1(\theta)\frac{\frac{\partial}{\partial \theta}f(X_1, \theta}{f(X_1, \theta)}$ \par 
+$T^*(X_1) - \tau(\theta) = a_1(\theta)\frac{\frac{\partial}{\partial \theta}f(X_1, \theta)}{f(X_1, \theta)}$ \par 
 Для почти всех $x$ верно следующее: \par 
-$T^*(x) - \tau(\theta) = a_1(\theta)\frac{\frac{\partial}{\partial \theta}f(x, \theta}{f(x, \theta)}$ \par
+$T^*(x) - \tau(\theta) = a_1(\theta)\frac{\frac{\partial}{\partial \theta}f(x, \theta)}{f(x, \theta)}$ \par
 Делим на $a_1$, интегрируем по $\theta$ и получаем ($\ln D(x)$ вылезает после взятия интеграла): \par 
-$\int\frac{1}{a_1(\theta)}(T^*(x) - \tau(\theta))d\theta = \ln f(x, \theta)$ \par 
+$\int\frac{1}{a_1(\theta)}(T^*(x) - \tau(\theta))d\theta = \ln f(x, \theta) - \ln D(x)$ \par 
 $A(\theta) = \int\frac{d\theta}{a_1(\theta)}$, $B(x) = T^*(x)$, $C(\theta) = -\int\frac{\tau(\theta)}{a_1(\theta)}$ \par 
-Возводим и в итоге: \par 
+Потенциализируем и в итоге: \par 
 $\exp(A(\theta)B(x) + C(\theta) + D(x)) = f(x, \theta)$ - QED \par 
 Как получать оптимальную оценку для других распределений? \par 
 Критерий оптимальности Бхаттачария \par 
 $U = \frac{\partial}{\partial \theta}\ln L(X, \theta) = \frac{L'_{\theta}(X, \theta)}{L(X, \theta)}$ \par 
-В критерии Бхаттачария кроме выписанной дроби используются ещё дроби вида $\frac{L_{\theta}^{(2)}(X, \theta)}{L(X, \theta)}, \ldots, \frac{L_{\theta}^{(n)}(X, \theta)}{L(X, \theta)}$ \par 
+В критерии Бхаттачария кроме выписанной дроби используются ещё дроби вида \par 
+$\frac{L_{\theta}^{(2)}(X, \theta)}{L(X, \theta)}, \ldots, \frac{L_{\theta}^{(n)}(X, \theta)}{L(X, \theta)}$ \par 
 Ищется оценка, для которой $T - \tau(\theta)$ является линейной комбинацией указанных дробей с коэффицентами, зависящими от параметра \par 
 Неравенство и условие Бхаттачария \par 
 Пусть $T(X)$ - несмещённая оценка для функции от параметра $\theta$, $E_{\theta}T(X) = \tau(\theta)$ \par 
@@ -74,5 +75,5 @@ $\tau^{(i)}(\theta) = \sum\limits_{j = 1}^rc_{i, j}(\theta)a_j(\theta)$, $i = 1,
 Если матрица $(c_{i,j})_{i,j = 1}^r$ является невырожденной, то неравенство Бхаттачария примет вид $D_{\theta} \geq \sum\limits_{i,j = 1}^rc^{i,j}\tau^{(i)}\tau^{(j)}$, где $c^{i,j}$ - элементы обратной матрицы \par 
 $a = c^{-1}\tau'$ \par 
 $(\tau')^T(c^{-1})^Tcc^{-1}\tau = (\tau')^T(c^{-1})^T\tau = (\tau')^Tc^{-1}\tau$ \par 
-Обобщение неравенства Рао-Крамера \par 
+Это обобщение неравенства Рао-Крамера \par 
 \end{document}
