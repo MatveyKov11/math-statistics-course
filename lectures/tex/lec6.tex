@@ -1,0 +1,105 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[OT1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\topmargin=-0.54cm
+\textheight=25.7cm
+\oddsidemargin=-0.04cm
+\textwidth=17cm
+\begin{document}
+Доказательство критерия \par 
+1) $\Rightarrow$ \par 
+Пусть $X$ - выборка (с дискретным распределением), $T$ - достаточная статистика \par 
+$L(X, \theta) = \prod\limits_{i = 1}^nf(X_i, \theta)$ \par
+$x = (x_1, \ldots, x_n)^T$ \par 
+$f(x_1, \theta) = \mathbb{P}_{\theta}(X_1 = x_1)$, где $x_1$ принимает конечное или счётное число значений \par 
+$L(X, \theta) = \mathbb{P}_{\theta}(X = x) = \mathbb{P}_{\theta}(X = x | T(X) = t = T(x)) \cdot \mathbb{P}_{\theta}(T(X) = t)$ \par 
+Первый множитель от $\theta$ не зависит (в силу достаточности статистики), обозначим его за $h(x)$. Второй множитель обозначим за $g(T, \theta)$. В итоге: \par 
+$L(X, \theta) = h(x) \cdot g(T, \theta)$ \par 
+2) $\Leftarrow$ \par 
+Пусть выполнен критерий факторизации, $L(X, \theta) = h(x) \cdot g(T(x), \theta)$ \par 
+$\mathbb{P}_{\theta}(X = x | T(X) = t = T(x)) = \frac{\mathbb{P}_\theta(\{X = x \} \cap \{T(X) = t \})}{\mathbf{P}_\theta(T(X) = t)} = \frac{\mathbf{P}_\theta(X = x)}{\mathbf{P}_\theta(T(X) = t)} = \frac{\mathbf{P}_\theta(X = x)}{\sum_{y: T(y)=t}\mathbf{P}_\theta(X = y)} = \frac{h(x)g(t, \theta)}{\sum_{y: T(y) = t}h(y)g(t, \theta)} = \frac{h(x)}{\sum_{y: T(y) = t}h(y)}$, получили выражение, не зависящее от $\theta$ - QED. \par 
+Следствие: любая эффективная оценка является достаточной статистикой для параметра \par 
+Доказательство \par 
+Пусть $T^*$ - эффективная оценка $\tau(\theta)$ \par 
+$T^* - \tau(\theta) = a(\theta)\frac{\partial}{\partial \theta}\ln L(X, \theta)$ \par 
+$\int\limits_{\theta_0}^{\theta}\frac{T^*(X) - \tau(\theta)}{a(\theta)}d\theta = \ln L(X, \theta)|_{\theta_0}^{\theta}$ \par 
+Левую часть обозначим за $\widetilde{g}(T^*, \theta)$ \par 
+$\widetilde{g}(T^*, \theta) = \ln L(X, \theta) - \ln L(X, \theta_0)$ \par 
+$e^{\widetilde{g}(T^*, \theta)} \cdot L(X, \theta_0) = L(X, \theta)$, левая часть это $g(T^*, \theta)h(X) $ \par 
+$T^*$ будет достаточной статистикой по критерию - QED \par 
+Примеры достаточных статистик \par 
+1) $N(\theta, \sigma^2)$ - $\overline{X}$ является эффективной оценкой параметра $\theta$ $\Rightarrow$ $\overline{X}$ является достаточной статистикой \par 
+2) $Bi(1, \theta)$ аналогично $\overline{X} = \theta$ эффективная оценка $\Rightarrow$ $\overline{X}$ - достаточная статистика \par 
+3) $R(0, \theta)$, $\theta > 0$ \par 
+Проверяем $X_{(n)}$ \par 
+$f(x_1, \theta) = \left\lbrace \begin{matrix}
+\frac{1}{\theta}, & x_1 \in [0, \theta] \\
+0, & x_1 \notin [0, \theta]
+\end{matrix}\right.$ \par 
+$L(X, \theta) = \left\lbrace \begin{matrix}
+\frac{1}{\theta^n}, & X_{(n)} \in [0, \theta] \\
+0, & x_1 \notin [0, \theta]
+\end{matrix}\right.$ \par 
+$L(X, \theta) = \frac{e(\theta - X_{(n)})}{\theta^n} = g(X_{(n)}, \theta)$, где $e(y) = \left\lbrace \begin{matrix}
+1, & y \geq 0 \\
+0, & y < 0
+\end{matrix}\right.$ - ступенька Хевисайда \par 
+По критерию факторизации $T = X_{(n)}$ - достаточная статистика \par 
+4) $R(\theta_1, \theta_2)$, $\Theta = \{(\theta_1, \theta_2) | \theta_1 < \theta_2\}$ \par 
+$f(x_1, \theta_1, \theta_2) = \left\lbrace \begin{matrix}
+\frac{1}{\theta_2 - \theta_1}, & x_1 \in [\theta_1, \theta_2] \\
+0, & x_1 \notin [\theta_1, \theta_2]
+\end{matrix}\right.$ \par
+$L(X, \theta) = \frac{e(\theta_2 - X_{(n)})e(X_{(1)} - \theta_1)}{(\theta_2 - \theta_1)^n}$ \par 
+$T = (T_1, T_2) = (X_{(1)}, X_{(2)})$ \par 
+5) $N(\theta_1, \theta_2^2)$ \par 
+$f(x_1, \theta_1, \theta_2) = \frac{1}{\sqrt{2\pi}\theta_2}\exp(-\frac{1}{2}\frac{(x_1 - \theta_1)^2}{\theta_2^2})$ \par 
+$L(X, \theta_1, \theta_2) = \frac{1}{(2\pi)^{n/2}\theta_2^n}\exp(-\frac{1}{2\theta_2^2}\sum\limits_{i = 1}^n(X_i - \theta_1)^2) = \frac{1}{(2\pi)^{n/2}\theta_2^n}\exp(-\frac{1}{2\theta_2^2}\sum(X_i - \overline{X} + \overline{X} - \theta_1)^2) = \frac{1}{(2\pi)^{n/2}\theta_2^n}\exp(-\frac{1}{2\theta_2^2}nS^2 - \frac{1}{2\theta_2^2}n(\overline{X} - \theta_1)^2)$ \par 
+$T = (\overline{X}, S^2)$ - достаточная статистика \par 
+Утверждение - Любое взаимно-однозначное преобразование достаточной статистики снова приводит к достаточной статистике \par 
+Доказательство \par 
+Пусть $T$ - достаточная статистика \par 
+$\widetilde{T} = \phi(T)$, где $\phi$ - взаимно-однозначное преобразование \par 
+$L(X, \theta) = g(T(X), \theta)h(X)$ из критерия факторизации для $T$ \par 
+$T = \phi^{-1}(\widetilde{T})$ \par 
+$L(X, \theta) = g(\phi^{-1}(\widetilde{T}), \theta)h(X)$ - критерий факторизации для $\widetilde{T}$ \par 
+Пример - $N(\theta_1, \theta_2^2)$ \par 
+$T = (\overline{X}, S^2)$ \par 
+$S^2 = \overline{X^2} - \overline{X}^2$, $\overline{X^2} = S^2 + \overline{X}^2$ \par 
+$(\overline{X}, \overline{X^2})$ - тоже достаточная статистика \par 
+Для чего нужны достаточные статистики? \par
+Теорема Рао-Блэкуэлла-Колмогорова \par 
+Пусть $T_1$ - несмещённая оценка $\tau(\theta)$ и $T$ - достаточная статистика \par 
+Тогда существует статистика $T_2 = H(T)$ такая, что $D_{\theta}T_2 \leq D_{\theta}T_1$ \par 
+Доказательство \par 
+Используем условное матожидание (которое изучим в следующем семестре) \par 
+Есть $E_{\theta}T_1 = \tau(\theta)$, рассмотрим $E_{\theta}(T_1 | T = t) = m(t, \theta)$ - это и есть условное матожидание \par 
+Если распределение $T$ дискретно, то у него есть условное распределение, по которому можно интегрировать и получать условное матожидание \par 
+$E_{\theta}(T_1 | T = t) = \int T_1(x)f_{\theta}(x | T = t)dx = m(t, \theta) = m(t)$, так как $f_{\theta}$ не зависит от параметра, $T$ - достаточная статистика \par 
+Самое главное свойство условного матожидания: \par 
+$E_\theta(E_\theta(T_1 | T)) = E_\theta T_1 = \tau(\theta)$, $T_2$ из условия теоремы это $E_\theta(T_1 | T) = m(T)$ \par 
+$D_{\theta}T_1 = E_{\theta}(T_1 - \tau(\theta))^2 = E_{\theta}(T_1 - T_2 + T_2 - \tau(\theta))^2 = E_{\theta}(T_1 - T_2)^2 + E_{\theta}(T_2 - \tau(\theta))^2 + 2E_{\theta}(T_1 - T_2)(T_2 - \tau(\theta))$ \par 
+Докажем, что третье слагаемое, ковариация, равна нулю \par 
+$E_{\theta}(T_1 - T_2)(T_2 - \tau(\theta)) = E_{\theta}E_{\theta}((T_1 - T_2)(T_2 - \tau(\theta)) | T) = E_{\theta}(T_2 - \tau(\theta))(E_{\theta}(T_1 - T_2 | T)) = E_{\theta}(T_2 - \tau(\theta))(E_{\theta}(T_1 | T) - E_{\theta}T_2) E_{\theta}(T_2 - \tau(\theta))(E_{\theta}T_2 - E_{\theta}T_2) = 0$ \par 
+$D_{\theta}T_1 = E_{\theta}(T_1 - T_2)^2 + D_{\theta}T_2 \geq D_{\theta}T_2$ - равенство достигается, когда $T_1$ является достаточной статистикой - QED \par 
+Из теоремы можно сделать следующие выводы: \par 
+1) Если существует хотя бы одна несмещённая оценка функции $\tau(\theta)$, то существует как правило лучшая несмещённая оценка, являющаяся функцией от достаточной статистики. А значит оптимальная оценка является функцией достаточной статистики \par 
+2) Для того, чтобы найти оптимальную оценку, достаточно решить уравнение (1) относительно $H$ \par 
+(1) $E_{\theta}H(T) = \tau(\theta)$, где $T$ - достаточная статистика \par 
+3) Если $T$ имеет плотность $p(t, \theta)$, то уравнение (1) запишется в виде (2) \par 
+(2) $\int H(t)p(t, \theta)dt = \tau(\theta)$ - уравнение несмещённости \par 
+Интегрирование ведётся по прямой или плоскости, в зависимости от размерности $T$ \par 
+Если решение есть, то нашли кандидатов в оптимальные оценки \par 
+Если решений нет, то по теореме Рао-Блэкуэлла-Колмогорова оптимальной оценки нет \par 
+Если уравнение (2) имеет единственное решение, то $H(T)$ будет оптимальной оценкой функции $\tau(\theta)$ \par 
+Критерием единственности решения (но не существования) является свойство полноты достаточной статистики \par 
+Достаточная статистика $T$ называется полной, если для любой борелевской функции $\psi(t)$, определённой на множестве её значений, равенство $E_{\theta}\psi(T) = 0$ влечёт $\psi(t) = 0$ для (почти) всех значений $T$ \par 
+$E_{\theta}(H_1(T) - H_2(T)) = 0$ \par 
+$\psi(t) = H_1(t) - H_2(t) = 0\ \Rightarrow\ H_1 = H_2$ \par 
+\end{document}
