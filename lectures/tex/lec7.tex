@@ -1,0 +1,86 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[OT1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\topmargin=-0.54cm
+\textheight=25.7cm
+\oddsidemargin=-0.04cm
+\textwidth=17cm
+\begin{document}
+Пример полной достаточной статистики (доказательство нестрогое) \par 
+1) $N(\theta, \sigma^2),\ \overline{X}$ - достаточная статистика \par 
+$T = \widetilde{X} \sim N(\theta, \frac{\sigma^2}{n}),\ \psi(t)$ - некоторая функция и выполнено \par 
+$\int\limits_{-\infty}^{+\infty}\psi(t)\frac{1}{\sqrt{2\pi}\sigma/\sqrt{n}}\exp(-\frac{1}{2\sigma^2/n}(t - \theta)^2))dt = 0\ ?\Rightarrow \psi(t)=0$ \par 
+$\int\limits_{-\infty}^{+\infty}\psi(t)\frac{1}{\sqrt{2\pi}\sigma/\sqrt{n}}\exp(-\frac{t^2 + \theta^2}{2\sigma^2/n})\exp(\frac{t\theta}{\sigma^2/n})dt = 0$ - почти получили преобразование Лапласа, сделаем замену $t = -s$ и получим 2-хстороннее преобразование Лапласа, воспользуемся его свойством полноты \par 
+Преобразование $\equiv 0 \Rightarrow$ оригинал ($\psi(t)\exp(-\frac{t^2+\theta^2}{2\sigma^2/n})$) $\equiv 0 \Rightarrow \psi(t)\equiv 0$ \par 
+2) $R((0, \theta)),\ X_{(n)}$ - достаточная статистика \par 
+$F_{(n)}(x) = \left\lbrace \begin{matrix}
+	(\frac{x}{\theta})^n, & x < \theta \\
+	0, & x > \theta
+\end{matrix} \right.$ \par 
+$f_{(n)}(x) = \left\lbrace \begin{matrix}
+	\frac{n}{\theta^n}x^{n-1}, & x < \theta,\ x > 0 \\
+	0, & \text{в противном случае}
+\end{matrix} \right.$ \par 
+$\int\limits_{-\infty}^{+\infty}\psi(t)f_{(n)}(t)dt \equiv 0$ \par 
+$\int\limits_0^{\theta}\psi(t)\frac{n}{\theta^n}t^{n-1} dt \equiv 0$ \par 
+$\int\limits_0^{\theta}\psi(t)t^{n-1} dt \equiv 0\ \forall \theta > 0 \Rightarrow \psi(\theta)\theta^{n-1} = 0\ \forall \theta > 0 \Rightarrow \psi(t) = 0\ \forall t > 0$ \par 
+Построение оптимальной оценки функции от параметра по достаточной статистике \par 
+Всего алгоритма 2. \par 
+Первый алгоритм: \par 
+1) Доказываем полноту достаточной статистики/убеждаемся в полноте \par 
+2) Решаем уравнение несмещённости \par 
+Пример применения алгоритма: \par 
+$R((\theta_1, \theta_2)),\ \theta_1 < \theta_2$ \par 
+$T = (T_1, T_2) = (X_{(1)}, X_{(2)})$ \par 
+Берём $\psi(t_1, t_2):E_{\theta}\psi(T_1, T_2) \equiv 0$. Надо вывести, что $\psi(t_1, t_2) = 0$ при $t_1 < t_2$ \par 
+Совместная плотность $X_{(1)}, X_{(n)}$ имеет вид \par 
+$f(x, y) = \frac{n(n-1)}{(b - a)^n}(y - x)^{n-2}\ a \leq x \leq y \leq b$ \par 
+1) $E_{\theta}\psi(T_1, T_2) = \int\limits_{\theta_1}^{\theta^2}dt_1\int\limits_{t_1}^{\theta^2}dt_2\psi(t_1, t_2)\frac{n(n-1)}{(\theta_2 - \theta_1)^n}(t_2 - t_1)^{n-2} \equiv 0$ \par 
+$\int\limits_{\theta_1}^{\theta^2}dt_1\int\limits_{t_1}^{\theta^2}dt_2\psi(t_1, t_2)(t_2 - t_1)^{n-2} \equiv 0$ - дифференцируем по $\theta_1$, минус отбрасываем \par 
+$\int\limits_{\theta_1}^{\theta^2}dt_2\psi(\theta_1, t_2)(t_2 - \theta_1)^{n-2} \equiv 0$ - дифференцируем по $\theta_2$ \par 
+$\psi(\theta_1, \theta_2)(\theta_2 - \theta_1)^{n-2} \equiv 0$ \par 
+$\psi(\theta_1, \theta_2) \equiv 0$ при $\theta_1 < \theta_2$ \par 
+2) Пусть $\tau(\theta) = \theta_1\theta_2$, строим оптимальную оценку \par 
+Уравнение несмещённости \par 
+$T = H(X_{(1)}, X_{(2)}),\ E_{\theta}T = \tau(\theta)$ \par 
+$\int\limits_{\theta_1}^{\theta^2}dt_1\int\limits_{t_1}^{\theta^2}dt_2H(t_1, t_2)\frac{n(n-1)}{(\theta_2 - \theta_1)^n}(t_2 - t_1)^{n-2} = \theta_1\theta_2$ \par 
+$\int\limits_{\theta_1}^{\theta^2}dt_1\int\limits_{t_1}^{\theta^2}dt_2H(t_1, t_2)(t_2 - t_1)^{n-2} = \frac{\theta_1\theta_2(\theta_2 - \theta_1)^n}{n(n-1)}$ - снова дифференцируем, в этот раз минус не забываем \par 
+$-\int\limits_{\theta_1}^{\theta_2}dt_2H(\theta_1, t_2)(t_2 - \theta_1)^{n-2} = \frac{\theta_2(\theta_2 - \theta_1)^n}{n(n-1)} - \frac{\theta_1\theta_2(\theta_2 - \theta_1)^{n-1}}{n-1}$ - снова дифференцируем \par 
+$-H(\theta_1, \theta_2)(\theta_2 - \theta_1)^{n-2} = \frac{(\theta_2 - \theta_1)^n}{n(n-1)} + \frac{\theta_2(\theta_2 - \theta_1)^{n-1}}{n-1} - \frac{\theta_1(\theta_2 - \theta_1)^{n-1}}{n-1} - \theta_1\theta_2(\theta_2 - \theta_1)^{n-2} = \frac{(\theta_2 - \theta_1)^n}{n(n-1)} + \frac{(\theta_2 - \theta_1)^n}{n-1} - \theta_1\theta_2(\theta_2 - \theta_1)^{n-2} = (\theta_2 - \theta_1)^n\frac{n+1}{n(n-1)} - \theta_1\theta_2(\theta_2 - \theta_1)^{n-2}$ \par 
+$-H(\theta_1, \theta_2) = (\theta_2 - \theta_1)^2\frac{n+1}{n(n-1)} - \theta_1\theta_2$ \par 
+$T_{\text{опт}} = H(X_{(1)}, X_{(n)}) = X_{(n)}X_{(1)} - (X_{(n)} - X_{(1)})^2\frac{n+1}{n(n-1)}$ \par 
+Второй алгоритм \par 
+1) Доказываем полноту достаточной статистики/убеждаемся в полноте \par 
+2) Берём произвольные функции $H$ от достаточной статистики и вычисляем значения матожидания $E$ \par 
+3) Пытаемся представить функцию параметра $\tau(\theta)$ как линейную комбинацию функций из шага 2 \par 
+Получившаяся линейная комбинация и будет оптимальной оценкой \par 
+Пример применения алгоритма: \par 
+$R((0, \theta)),\ \theta > 0,\ T = X_{(n)}$ \par 
+1) Статистика полная (доказательство аналогичное) \par 
+2) Берём функции $T^k$ \par 
+$E_{\theta}T^k = \int\limits_0^{\theta} t^kf(t)dt = \int\limits_0^{\theta} t^kn\frac{t^{n-1}}{\theta^n}dt = \frac{n}{\theta^n} \frac{\theta^{n+k}}{n+k} = \frac{n}{n+k}\theta^k$ \par 
+3) Пусть $\tau(\theta) = \theta - \theta^3$ \par 
+$T_{\text{опт}} = \frac{n+1}{n}X_{(n)} - \frac{n+3}{n}X_{(n)}^3$ \par 
+Пусть $\tau(\theta) = e^{\theta}$ \par 
+$e^{\theta} = \sum\limits_{k=0}^{\infty}\frac{\theta^k}{k!}$ \par 
+$T_{\text{опт}} = \sum\limits_{k=0}^{\infty}\frac{n+k}{n}X_{(n)}^k \cdot \frac{1}{k!}$ - этот ряд сходится, так как есть мажоритарный ряд $\sum\limits_{k=0}^{\infty}\frac{n+k}{n}\theta^k \cdot \frac{1}{k!},\ X_{(n)} \leq \theta$, который сходится \par 
+Проверим, что $E_{\theta}T_{\text{опт}} = \tau(\theta)$ \par 
+Используем теорему Лебега и меняем $E$ и $\sum$ местами \par 
+$E_{\theta}T_{\text{опт}} = \sum\limits_{k=0}^{\infty}E_{\theta}\frac{n+k}{n}X_{(n)}^k\cdot \frac{1}{k!} = \sum\limits_{k=0}^{\infty}\frac{\theta^k}{k!} = e^{\theta}$ \par 
+Третий пример построения оптимальной оценки \par 
+$N(\theta_1, \theta_2),\ \tau(\theta) = \theta_2^2,\ T = (\overline{X}, S^2)$ - достаточная статистика \par 
+$E_{\theta}S^2 = \frac{n-1}{n}\theta_2^2,\ T_{\text{опт}} = \frac{n}{n-1}S^2$ \par 
+Осталось только доказать полноту \par 
+Нужно узнать совместное распределение $\overline{X}$ и $S^2$, они независимы, значит совместная плотность $=$ произведение обычных плотностей распределения \par 
+$\overline{X}$ имеет нормальное распределение $N(\theta_1, \frac{\theta_2^2}{n})$ \par 
+$\frac{S^2}{\theta_2^2}$ имеет распределение $\chi_{n-1}^2$ с функцией распределения $F(y)$ \par 
+$\mathbb{P}(\frac{S^2}{\theta_2^2} < y) = F(y) \Rightarrow \mathbb{P}(S^2 < z) = F(\frac{z}{\theta_2^2})$ \par 
+Пусть $f_{n-1}(z)$ - плотность $\chi_{n-1}^2$ $\Rightarrow$ плотность $S^2$ равна $f_{n-1}(\frac{z}{\theta_2^2})\cdot\frac{1}{\theta_2^2}$ \par 
+Доказательство полноты в следующей лекции \par  
+\end{document}
