@@ -1,0 +1,91 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[OT1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\topmargin=-0.54cm
+\textheight=25.7cm
+\oddsidemargin=-0.04cm
+\textwidth=17cm
+\begin{document}
+Оценки максимального правдоподобия \par 
+Пусть имеется выборка из генеральной совокупности с функцией распределения $f(x, \theta)$, $\theta$ - скалярный или векторный параметр \par 
+Оценка $T$ параметра $\theta$ называется оценкой максимального правдоподобия, если она доставляет максимум функции правдоподобия \par 
+$L(X, T(X)) = \max\limits_{\theta \in \Theta}L(X, \theta)$ \par 
+Пусть $f(x, \theta)$ - плотность $F(x, \theta)$, тогда $L(x, \theta) = \prod\limits_{i=1}^nf(x_i, \theta)$, где $x$ - возможное значение вектора выборки \par 
+Если при любом возможном значении выборки функция $L$ дифференцируема по параметру, то чтобы получить оценку максимального правдоподобия надо приравнять производные к нулю и решить уравнения $\frac{\partial L(x, \theta)}{\partial \theta_i} = 0,\ i = 1,\ \ldots\ , n$ иногда вместо этого решают аналогичные уравнения $\frac{\partial \ln L(x, \theta)}{\partial \theta_i} = 0$ \par 
+$\widehat{\theta}$ - обозначение оценки максимального правдоподобия \par 
+Свойства оценки максимального правдоподобия: \par 
+1) Если семейство допускает эффективную оценку для некоторой функции $\tau(\theta)$: \par 
+Пусть $\tau(\theta)$ - функция от параметра, $\widehat{\tau} := \tau(\widehat{\theta})$ - оценка функции от параметра \par 
+$T^*(X) - \tau(\theta) = a(\theta)U(X, \theta)$ \par 
+$T^*(X) - \tau(\theta) = a(\theta)\frac{\partial \ln L(X, \theta)}{\partial \theta}$, если $\theta$ скаляр \par 
+$T^*(X) - \widehat{\tau} = 0 \Rightarrow T^* = \widehat{\tau}$ \par 
+2) Если семейство допускает достаточную статистику, то оценка максимального правдоподобия является функцией от достаточной статистики: \par 
+$L(X, \theta) = g(T(X), \theta)h(X)$ - надо найти экстремум $g(t, \theta)$ \par 
+Для каждого фиксированного значения $t$ $g(t, \theta)$ достигает максимума при некотором $\theta_{\max}$. Для каждого $t$ это значение своё, $\theta_{\max} = \theta_{\max}(t)$ \par 
+$\widehat{\theta} = \theta_{\max}(T(X))$, где $T$ - достаточная статистика \par 
+Примеры \par 
+1) $Bi(1, \theta),\ T^* = \overline{X}$ - эффективная оценка, также является оценкой максимального правдоподобия, проверим \par 
+$L(X, \theta) = \theta^{\sum\limits_{i=1}^n X_i}(1 - \theta)^{n - \sum\limits_{i=1}^n X_i} = \theta^{nT^*}(1 - \theta)^{n - nT^*}$ \par 
+$\ln L(X, \theta) = nT \ln \theta + (n - nT)\ln (1 - \theta)$ \par 
+Дифференцируем и подставляем $\theta = \widehat{\theta}$ \par 
+$0 = \frac{nT}{\widehat{\theta}} - \frac{n - nT}{1 - \widehat{\theta}}$ \par 
+$nT(1 - \widehat{\theta}) - (n - nT)\widehat{\theta} = 0$ \par 
+$nT - nT\widehat{\theta} - n\widehat{\theta} + nT\widehat{\theta} = 0$ \par 
+$nT = n\widehat{\theta}$ \par 
+$\widehat{\theta} = T$ \par 
+Нашли экстремум, но что если это минимум, а не максимум? Смотрим вторую производную \par 
+$\frac{T}{\widehat{\theta}^2} - (n - T)\frac{1}{(\widehat{\theta}-1)^2} < 0$, значит нашли максимум \par 
+2) $\overline{Bi}(r, \theta)$, оценка максимального правдоподобия такая же, так как $\overline{X}$ - эффективная оценка \par 
+3) $N(\theta, \sigma^2)$ - аналогично \par 
+4) $N(\mu, \theta^2),\ \frac{1}{n}\sum\limits_{i=1}^n(X_i - \mu)^2$ - достаточная статистика \par 
+$L(X, \theta) = \frac{1}{(2\pi)^{n/2}\theta^n}\exp(-\frac{1}{2\theta^2}\sum\limits_{i=1}^n(X_i - \mu)^2)$ \par 
+$\frac{\partial \ln L}{\partial \theta} = \frac{\partial}{\partial \theta}(-n\ln\theta - \frac{1}{2\theta^2}nT) = -\frac{n}{\theta} + \frac{1}{\theta^3}nT = 0$ \par 
+$\widehat{\theta}^2 = T,\ \widehat{\theta} = \sqrt{T}$ \par 
+5) Многомерный параметр $N(\theta_1, \theta_2^2)$ \par 
+$f(x, \theta_1, \theta_2^2) = \frac{1}{\sqrt{2\pi}\theta_2}\exp(-\frac{1}{2\theta_2^2}(x - \theta_1)^2)$ \par 
+$\ln L(X, \theta) = -\frac{n}{2}\ln 2\pi - n\ln\theta_2 - \frac{1}{2\theta_2^2}\sum\limits_{i=1}^n(X_i - \theta_1)^2$ \par 
+$\frac{\partial\ln L}{\partial\theta_1} = \frac{1}{\theta_2^2}\sum\limits_{i=1}^n(X_i - \theta_1) = 0$ \par 
+$\widehat{\theta}_1 = \overline{X}$ \par 
+$\frac{\partial\ln L}{\partial\theta_2} = -\frac{n}{\theta_2} + \frac{1}{\theta_2^3}\sum\limits_{i=1}^n(X_i - \theta_1)^2 = -\frac{n}{\theta_2} + \frac{1}{\widehat{\theta}_2^3}\sum\limits_{i=1}^n(X_i - \overline{X})^2 = 0$ \par 
+$\widehat{\theta}_2^2 = S^2 = \frac{1}{n}\sum\limits_{i=1}^n(X_i - \overline{X}$ \par 
+$\widehat{\theta}_2 = S$ \par 
+$\widehat{\theta} = (\widehat{\theta}_1, \widehat{\theta}_2) = (\overline{X}, S)$ \par 
+Проверяем, что это максимум, а не минимум. Ищем 2-ой дифференциал \par 
+$\frac{\partial^2\ln L}{\partial\theta_1^2} = -\frac{n}{\theta_2^2}$ \par 
+$\frac{\partial^2\ln L}{\partial\theta_2\partial\theta_1} = -\frac{2}{\theta_2^3}\sum\limits_{i=1}^n(X_i - \theta_1)$ при $\theta_1 = \overline{X}$ равна нулю \par 
+$\frac{\partial^2\ln L}{\partial\theta_2^2} = \frac{n}{\theta_2^2} - \frac{3}{\theta_2^4}\sum\limits_{i=1}^n(X_i - \theta_1)^2$ \par 
+Подставляем значения оценки максимального правдоподобия и строим матрицу \par 
+$\left( \begin{matrix}
+	-\frac{n}{S^2} & 0 \\
+	0 & \frac{n}{S^2} -\frac{3n}{S^2} = -\frac{2n}{S^2}
+\end{matrix} \right)$ - матрица квадратичной формы 2-ого дифференциала, она отрицательно определённая \par 
+Что делать в случае нерегулярного семейства - примеры \par 
+1) $R((0, \theta)),\ \theta > 0$ \par 
+$f(x, \theta) = \frac{e(\theta - x)}{\theta}$ \par 
+$L(X, \theta) = \frac{1}{\theta^n}e(\theta - X_{(n)})$ \par 
+Максимальное принимаемое значение при фиксированном $\theta$ - $\frac{1}{\theta^n}$ при условии $\theta \geq X_{(n)}$, ещё раз ищем максимум, но теперь $\theta$ произвольное \par 
+$\widehat{\theta}$ должно быть минимальным, но не нарушать условие $\theta \geq X_{(n)}$ \par 
+$\widehat{\theta} = X_{(n)}$ \par 
+2) $R((\theta_1, \theta_2)),\ \theta_1 < \theta_2$ \par 
+$L(X, \theta_1, \theta_2) = \frac{1}{(\theta_2 - \theta_1)^n}e(\theta_2 - X_{(n)})e(X_{(1)} - \theta_1)$ \par 
+Максимальное принимаемое значение - $\frac{1}{(\theta_2 - \theta_1)^n}$, условия - $\theta_2 \geq X_{(n)},\ \theta_1 \leq X_{(1)}$ \par 
+$\widehat{\theta} = (\widehat{\theta}_1, \widehat{\theta}_2) = (X_{(1)}, X_{(n)})$ \par 
+Принцип инвариантности для оценки максимального правдоподобия \par 
+Пусть $\theta$ - многомерный параметр, $\theta \in \Theta$ \par 
+$\widetilde{q}: \Theta \rightarrow \mathbb{Q}$ - взаимоднозначное преобразование \par 
+$f(x, \theta)$ - исходная плотность \par 
+$f(x, \widetilde{q}^{-1}(q))$, ($q$ - параметр) \par 
+Тогда $\widehat{\theta} = \widetilde{q}^{-1}(\widehat{q}),\ \widehat{q} = \widetilde{q}(\widetilde{\theta})$ - принцип инвариантности - при преобразовании оценка максимального правдоподобия переходит в оценку максимального правдоподобия \par 
+Пример - $N(\theta_1, \theta_2^2)$ \par 
+$F(x) = \Phi(\frac{x - \theta_1}{\theta_2}) = \tau(\theta_1, \theta_2)$, $x$ - фиксированный, нужно построить оценку максимального правдоподобия для $\tau(\theta_1, \theta_2)$ \par 
+Пусть $q_1 = \Phi(\frac{x - \theta_1}{\theta_2}),\ q_2 = \theta_2$ \par 
+$q_1 = \Phi(\frac{x - \theta_1}{q_1}),\ \frac{x - \theta_1}{q_2} = x_{q_1}$ - квантиль порядка $q_1$ для стандартного нормального закона (квантиль $x_p$ - это решение уравнения $f(x) = p$) \par 
+$x - \theta_1 = x_{q_1}q_2$, $\theta_1$ находится однозначно \par 
+$\widehat{q}_1 = \Phi(\frac{x - \widehat{\theta}_1}{\widehat{\theta}_2}) = \Phi(\frac{x - \overline{X}}{S}),\ \widehat{q}_2 = \widehat{\theta}_2$ \par 
+\end{document}

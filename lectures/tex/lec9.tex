@@ -1,0 +1,60 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[OT1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\topmargin=-0.54cm
+\textheight=25.7cm
+\oddsidemargin=-0.04cm
+\textwidth=17cm
+\begin{document}
+Асимптотические свойства оценки максимального правдоподобия \par 
+Пусть $F(x, \theta)$ - функция распределения выборки, $\theta = (\theta_1,\ \ldots,\ \theta_k)^T$ \par 
+$\widehat{\theta}_n$ - оценка максимального правдоподобия при выборке объёма $n$ \par 
+Свойство состоятельности состоит в том, что $\widehat{\theta}_n \to^{\mathbb{P}_\theta} \theta$ при $n\to\infty$ \par 
+Свойство асимптотической нормальности \par 
+$\sqrt{n}(\widehat{\theta}_n - \theta) \to^d \xi,\ Low(\xi) = N(0, \Sigma(\theta))$, где $\Sigma(\theta)$ - матрица ковариаций $\xi$ \par 
+Для оценки максимального правдоподобия $\Sigma(\theta) = I^{-1}(\theta)$, где $I(\theta)$ - информационная матрица Фишера, $(I(\theta))_{ij} = E_{\theta}\frac{\partial\ln L}{\partial \theta_i}\cdot\frac{\partial\ln L}{\partial \theta_j}$ \par 
+Теорема (сформулирована в общем виде, а доказана в частном) \par 
+Пусть для регулярной модели $F(x, \theta)$ с векторным параметром $\theta = (\theta_1,\ \ldots,\ \theta_k)^T$ и есть производные по параметрам, а также локальный максимум функции правдоподобия единственный и достигается во внутренней точке $\widehat{\theta}_n$ параметрического множества, тогда \par 
+1) $\widehat{\theta}_n$ является состоятельной оценкой для $\theta$ \par 
+2) Если дополнительно существуют производные $\frac{\partial^3f(x, \theta}{\partial\theta_i\partial\theta_j\partial\theta_k}$ и существует функция $M(x)$ такая, что при всех $\theta$ и $x$ $|\frac{\partial^3f(x, \theta}{\partial\theta_i\partial\theta_j\partial\theta_k}| \leq M(x)$ и $E_{\theta}M(X) < +\infty$, то
+$\sqrt{n}(\widehat{\theta}_n - \theta) \to \xi,\ Low(\xi) = N(0, I^{-1}(\theta)$ \par 
+3) Если $\tau(\theta)$ - дифференцируемая функция от параметра, то $\widehat{\tau}_n = \tau(\widehat{\theta}_n)$ является состоятельной оценкой $\tau(\theta)$ и $\sqrt{n}(\widehat{\tau}_n - \tau(\theta)) \to^d \nu,\ Low(\nu) = N(0, \sigma^2(\theta)$, где $\sigma^2(\theta) = (grad\ \tau(\theta))^T(\theta)I^{-1}(\theta)(grad\ \tau(\theta))$ \par 
+Доказательство \par 
+1) Возьмём тождественную функцию от параметра: $\tau(\theta) = \theta$ \par 
+Тогда $\widehat{\tau}_n = \tau(\widehat{\theta}_n) = \widehat{\theta}_n$ по свойству оценки максимального правдоподобия является эффективной оценкой для $\tau$, то есть $E_{\theta}\widehat{\theta}_n = E_{\theta}\widehat{\tau}_n = \tau(\theta) = \theta$ - состоятельность оценки максимального правдоподобия доказана \par 
+Будем доказывать 2) и 3) в случае скалярного параметра \par 
+Условие на производную в случае скалярного параметра запишется таким образом: $\exists M(x)\ :\ |\frac{\partial^3f(x, \theta}{\partial\theta_i\partial\theta_j\partial\theta_k}| \leq M(x)$ и $E_{\theta}M(X) < +\infty$ \par 
+Утверждения 2) и 3) в скалярном случае: \par 
+2) $\sqrt{n}(\widehat{\theta}_n - \theta) \to^d \xi\ Low(\xi) = N(0, \frac{1}{i_1(\theta)})$, где $i_1(\theta) = E_{\theta}(\frac{\partial\ln L(X_1, \theta)}{\partial\theta})^2 = D_{\theta}U_1$ \par 
+3) $\sigma^2(\theta) = \frac{(\tau'(\theta))^2}{i_1(\theta)}$ \par 
+$0 = U(\widehat{\theta}_n)$ - максимум функции \par 
+$0 = U(\widehat{\theta}_n) = U(\theta) + U'(\theta)(\widehat{\theta}_n - \theta) + \frac{1}{2}U''(\theta^*)(\widehat{\theta}_n - \theta)^2$, $\theta^*$ лежит между $\widehat{\theta}_n$ и $\theta$ \par 
+$\widehat{\theta}_n - \theta = -U(\theta)\cdot(U'(\theta) + \frac{1}{2}U''(\theta^*)(\widehat{\theta}_n - \theta))^{-1}$ \par 
+$\sqrt{n}(\widehat{\theta}_n - \theta) = -\sqrt{n}U(\theta)\cdot(U'(\theta) + \frac{1}{2}U''(\theta^*)(\widehat{\theta}_n - \theta))^{-1}$ \par 
+Заметим, что в силу центральной предельной теоремы для одинаково распределённых слагаемых \par 
+$\frac{U(\theta)}{\sqrt{n}\sqrt{i_1(\theta)}} = \frac{\sum\limits_k\frac{\partial\ln L(X_k, \theta}{\partial\theta}}{\sqrt{n}\sqrt{i_1(\theta)}}$ сходится по распределению к случайной величине $\xi$, имеющей стандартное нормальное распределение \par 
+$\epsilon_n = \frac{1}{2}U''(\theta^*)(\widehat{\theta}_n - \theta)$ \par 
+Мы знаем, что $\widehat{\theta}_n - \theta \to^{\mathbb{P}_{\theta}} 0$ - состоятельность оценки (утверждение 1) \par 
+$\frac{1}{n}U''(\theta^*) = \frac{1}{n}\sum\limits_{i=1}^n \frac{\partial^3}{\partial\theta^3}\ln L(X_i, \theta^*)$, причём $\theta^*$ разная для разных $X_i$ \par 
+$|\frac{U''(\theta)}{n}| \leq \frac{1}{n}\sum\limits_{i=1}^nM(X_i) \to^{\mathbb{P}_{\theta}} E_{\theta}M(X_1) < +\infty$ \par 
+$\sqrt{n}(\widehat{\theta}_n - \theta) = \sqrt{n}U(\theta)(-\frac{U'(\theta)}{n} - \frac{\epsilon_n}{n})^{-1}n^{-1}$ \par 
+$\sqrt{n}(\widehat{\theta}_n - \theta) = \frac{U(\theta)}{\sqrt{n}}(-\frac{U'(\theta)}{n} - \frac{\epsilon_n}{n})^{-1}$ - надо оценить множитель перед скобкой и 2 дроби в скобке \par 
+$\frac{U(\theta)}{\sqrt{n}\sqrt{i_1(\theta)}}$ сходится к стандартной нормальной величине, $\frac{U(\theta)}{\sqrt{n}i_1(\theta)}$ сходится к распределению $N(0, \frac{1}{i_1(\theta)})$ \par 
+$-\frac{U'(\theta)}{n} = \frac{1}{n}\sum\limits_{i=1}^n(-\frac{\partial^2}{\partial\theta^2}\ln L(X_i, \theta)) \to^{\mathbb{P}} -E_{\theta}\frac{\partial^2}{\partial\theta^2}\ln L(X_1, \theta) = D_{\theta}U(X_1, \theta) = i_1(\theta)$ \par 
+$\sqrt{n}(\widehat{\theta}_n - \theta) = \frac{U(\theta)}{\sqrt{n}}(-\frac{U'(\theta)}{n} - \frac{\epsilon_n}{n})^{-1}$, множитель перед скобкой сходится по распределению к $\xi \sim N(0, \frac{1}{i_1(\theta)})$, первая дробь в скобке стремится по вероятности к единице \par 
+Осталось доказать, что $\frac{1}{n}\epsilon_n = \frac{1}{2n}U''(\theta^*)(\widehat{\theta}_n - \theta) \to^{\mathbb{P}} 0$ \par 
+$\mathbb{P}_{\theta}(\{\frac{1}{2n}|U''(\theta^*)(\widehat{\theta}_n - \theta)| > \delta\}) \leq \mathbb{P}_{\theta}(\{\frac{1}{2n}\sum\limits_{i=1}^nM(X_i)\cdot|\widehat{\theta}_n - \theta| > \delta\})$ \par 
+$\eta_n = \frac{1}{2}|\widehat{\theta}_n - \theta| \to^{\mathbb{P}} 0$ \par 
+$\xi_n = \frac{1}{n}\sum\limits_{i=1}^n M(X_i) \to^{\mathbb{P}} E_{\theta}M(X_1) = c > 0$ \par 
+$\eta_n \to^{\mathbb{P}} 0,\ \xi_n \to^{\mathbb{P}} c > 0$ \par 
+$\mathbb{P}_{\theta}(\{\xi_n\eta_n > \delta\}) = \mathbb{P}_{\theta}(\{\xi_n\eta_n > \delta\} \cap \{|\xi_n - c| > \frac{c}{2}\}) + \mathbb{P}_{\theta}(\{\xi_n\eta_n > \delta\} \cap \{|\xi_n - c| < \frac{c}{2}\})$ \par 
+$\mathbb{P}_{\theta}(\{\xi_n\eta_n > \delta\} \cap \{|\xi_n - c| > \frac{c}{2}\}) \leq \mathbb{P}_{\theta}(\{|\xi_n - c| > \frac{c}{2}\}) \to 0$ \par 
+$\mathbb{P}_{\theta}(\{\xi_n\eta_n > \delta\} \cap \{|\xi_n - c| < \frac{c}{2}\}) \leq \mathbb{P}_{\theta}(\{\frac{3}{2}\eta_n > \delta\}) \to 0$ \par 
+Продолжение в следующей лекции \par 
+\end{document}
