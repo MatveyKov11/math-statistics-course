@@ -1,0 +1,56 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[OT1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\topmargin=-0.54cm
+\textheight=25.7cm
+\oddsidemargin=-0.04cm
+\textwidth=17cm
+\begin{document}
+Теперь ищем статистики $T_1$ и $T_2$ \par 
+$(\frac{X_{(n)}}{T})^n = g$ \par 
+$\frac{X_{(n)}}{T} = \sqrt[n]{g}$ \par 
+$T = \frac{X_{(n)}}{\sqrt[n]{g}}$ \par 
+$T_1 = \frac{X_{(n)}}{\sqrt[n]{g_2}},\ T_2 = \frac{X_{(n)}}{\sqrt[n]{g_1}}$ \par 
+Продолжение в следующей лекции
+Длина интервала $l = X_{(n)}(\frac{1}{\sqrt[n]{g_1}} - \frac{1}{\sqrt[n]{g_2}}) = X_{(n)}(\frac{1}{\sqrt[n]{g_1}} - \frac{1}{\sqrt[n]{g_1 + \gamma}})$ \par 
+$l' = X_{(n)}(-\frac{1}{n}\frac{1}{g_1^{1+1/n}} + \frac{1}{n}\frac{1}{(g_1+\gamma)^{1+1/n}}) \leq 0$, надо взять самое большое $g_1$ \par 
+$g_1 = 1 - \gamma,\ g_2 = 1$ \par 
+Оптимальный доверительный интервал - $(X_{(n)}; \frac{X_{(n)}}{\sqrt[n]{1 - \gamma}})$ \par 
+Универсальная центральная статистика \par 
+Если $F(x, \theta)$ - функция распределения выборки и она монотонна по $\theta$, то универсальную центральную статистику можно построить единственным способом: \par 
+$G(X, \theta) = -\sum\limits_{i=1}^n\ln F(X_i, \theta)$ \par 
+Проверим, что $G$ центральная \par 
+1) $F,\ \ln,\ \sum$ - монотонны по параметру \par 
+2) $\xi_i = -\ln F(X_i, \theta)$ \par 
+$\mathbb{P}(\{\xi < x\}) = \mathbb{P}(\{-\ln F(X_i, \theta) < x\}) = \mathbb{P}(\{F(X_i, \theta) > e^{-x}\}) = \mathbb{P}(\{ X_i > F^{-1}(e^{-x})\}) = 1 - F(F^{-1}(e^{-x})) = 1 - e^{-x}$ \par 
+Распределение $\xi$ экспоненциальное с плотностью \par 
+$f(x) = \left\lbrace \begin{matrix}
+	e^{-x}, & x > 0 \\
+	0, & x \leq 0
+\end{matrix} \right.$ \par 
+$G$ как сумма экспоненциальных случайных величин имеет гамма распределение с плотностью \par 
+$f(x) = \left\lbrace \begin{matrix}
+	\frac{x^{n-1}}{\Gamma(n)}e^{-x}, & x > 0 \\
+	0, & x \leq 0
+\end{matrix} \right.$ \par 
+Пример применения универсальной центральной статистики на $R((0, \theta))$ \par 
+Выбираем $g_1$ и $g_2$ как квантили гамма распределения, $F_G(g_2) - F_G(g_1) = \gamma$ \par 
+$F(x, \theta) = \left\lbrace \begin{matrix}
+	\frac{x}{\theta}, & x \in [0; \theta] \\
+	0, & x \notin [0; \theta]
+\end{matrix} \right.$ \par 
+$G(X, T) = -\sum\limits_{i=1}^n\ln\frac{X_i}{T} = g$ \par 
+$-\sum\limits_{i=1}^n\ln X_i + n\ln T = g$ \par 
+$\frac{T^n}{\prod\limits_{i=1}^nX_i} = e^g$ \par 
+$T = e^{g/n}(\prod\limits_{i=1}^nX_i)^{1/n}$ \par 
+$T_1 = e^{g_1/n}(\prod\limits_{i=1}^nX_i)^{1/n},\ T_2 = e^{g_2/n}(\prod\limits_{i=1}^nX_i)^{1/n}$ \par 
+Доверительный интервал - $\left( e^{g_1/n}(\prod\limits_{i=1}^nX_i)^{1/n}; e^{g_2/n}(\prod\limits_{i=1}^nX_i)^{1/n} \right)$ \par 
+Для центрального доверительного интервала в качестве $g_1$ берём квантиль порядка $\frac{1-\gamma}{2}$, а для $g_2$ берём квантиль порядка $\frac{1+\gamma}{2}$ \par 
+Существуют и другие методы построения, но их не рассматриваем \par 
+\end{document}

@@ -1,0 +1,93 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[OT1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\topmargin=-0.54cm
+\textheight=25.7cm
+\oddsidemargin=-0.04cm
+\textwidth=17cm
+\begin{document}
+Пусть $\gamma \in (0, 1)$, $T_1(X)$ и $T_2(X)$ статистики, причём $T_1(X) < T_2(X)$ \par 
+Интервал $(T_1, T_2)$ называется $\gamma$-доверительным, или доверительным уровня значимости $\gamma$ для параметра $\theta$, если $\mathbb{P}_{\theta}(\{T_1(X) < \theta < T_2(X)\}) \geq \gamma\ \forall \gamma$ \par 
+Аналогично вводится понятие доверительного интервала для функций от параметра \par 
+$G(X, \theta)$ называется центральной статистикой, если \par 
+1) $G$ монотонна на параметре \par 
+2) Распределение $G(X, \theta)$ не зависит от параметра $\theta$ \par 
+Метод построения доверительного интервала \par 
+Пусть $g_1$ и $g_2$ такие, что $g_1 < g_2$ и $g_2 - g_1 = \gamma$ \par 
+И пусть $F_G$ - функция распределения центральной статистики $G$ такая, что $F_G(g_2) - F_G(g_1) = \gamma$ \par 
+Тогда $\mathbb{P}_{\theta}(\{g_1 < G(X, \theta) < g_2\}) = \gamma\ \forall\theta$ \par 
+Находим $T_1$ и $T_2$, решая уравнение $G(X, \theta) = g_1,g_2$ (решаем относительно $\theta$) \par 
+$\mathbb{P}_{\theta}(\{T_1 < \theta < T_2\}) = \mathbb{P}_{\theta}(\{G(X, T_1) < G(X, \theta) < G(X, T_2)\}) = \mathbb{P}_{\theta}(\{g_1 < G(X, \theta) < g_2\}) = \gamma$ в силу монотонности \par 
+Примеры построения доверительных интервалов \par 
+1) $N(\theta, \sigma^2)$, строим интервал для параметра $\theta$ \par
+Центральная статистика - $G(X, \theta) = \sqrt{n}\frac{\overline{X} - \theta}{\sigma}$ (статистика монотонна по параметру и имеет распределение $N(0, 1)$ - не зависит от параметра, значит статистика центральная) \par 
+2) $N(\theta_1, \theta_2^2)$, строим для $\theta_1$) \par 
+$G(X, \theta) = \sqrt{n-1}\frac{\overline{X} - \theta}{\sqrt{S^2}}$ (статистика центральная по аналогичным рассуждениям) \par 
+3) $N(a, \theta^2)$, надо построить не для параметра, а для функции от него $\theta^2$ \par 
+$\frac{X_i - a}{\theta} \sim N(0, 1)$ \par 
+$G(X, \theta) = \sum_{i=1}^n\frac{(X_i - a)^2}{\theta^2} \sim \chi_n^2$ (условия центральной статистики выполнены) \par 
+Нужно выбрать $g_1$ и $g_2$ так, чтобы $F_G(g_2) - F_G(g_1) \geq \gamma$ \par 
+$F(g) = \int\limits_0^gK_n(x)dx$, где $K_n(x) = \frac{x^{n/2 - 1}}{\Gamma(n/2)2^{n/2}},\ x > 0$ \par 
+В качестве $g_1$ и $g_2$ будем брать квантили \par 
+Пусть $F(g_1) = \alpha_1$, тогда $g_1 = \chi_{n,\alpha_1}^2$ и $F(g_2) = 1 - \alpha_2$, тогда $g_2 = \chi_{n,1-\alpha_2}^2$, $1 - \alpha_2 - \alpha_1 \geq \gamma$ \par 
+Решаем уравнение $G(X, \theta) = \frac{1}{\theta^2}\sum\limits_{i=1}^n(X_i - a)^2 = g_1 = \chi_{n,\alpha_1}^2$ относительно $\theta^2$ \par 
+$\theta^2 = \frac{1}{\chi_{n,\alpha_1}^2}\sum\limits_{i=1}^n(X_i - a)^2$ для $g_1$, $\theta^2 = \frac{1}{\chi_{n,1 - \alpha_2}^2}\sum\limits_{i=1}^n(X_i - a)^2$ для $g_2$ \par 
+Доверительный интервал имеет вид $\left(\frac{1}{\chi_{n,\alpha_1}^2}\sum\limits_{i=1}^n(X_i - a)^2;\ \frac{1}{\chi_{n,1 - \alpha_2}^2}\sum\limits_{i=1}^n(X_i - a)^2\right)$, где $\alpha_1 + \alpha_2 = 1 - \gamma$ \par 
+Таких интервалов много ($\alpha_1$ и $\alpha_2$ можно выбрать многими способами), надо выбрать кратчайший интервал \par 
+Для построения кратчайшего доверительного интервала нужно минимизировать $\frac{1}{\chi_{n,\alpha_1}^2} - \frac{1}{\chi_{n,1 - \alpha_2}^2}$ \par 
+$\chi_{n, \alpha_1}^2 = F_G^{-1}(\alpha_1)$ \par 
+$(F_G^{-1}(\alpha_1))' = \frac{1}{F_G'(F_G^{-1}(\alpha_1))} = \frac{1}{K_n(g_1)}$ \par 
+$(\frac{1}{\chi_{n,\alpha_1}^2} - \frac{1}{\chi_{n,1 - \alpha_2}^2})' = \frac{1}{g_1^2}\cdot\frac{1}{K_n(g_1)} - \frac{1}{g_2^2}\cdot\frac{1}{K_n(g_2)} = 0$ \par 
+Получили систему уравнений: \par 
+$\left\lbrace \begin{matrix}
+	g_1^2K_n(g_1) = g_2^2K_n(g_2) \\
+	\alpha_1 + \alpha_2 = 1 - \gamma
+\end{matrix} \right.$ \par 
+$\left\lbrace \begin{matrix}
+	g_1^2g_1^{n/2-1}e^{-g_1/2} = g_2^2g_2^{n/2-1}e^{-g_2/2} \\
+	1 - \alpha_2 = \alpha_1 + \gamma
+\end{matrix} \right.$ \par 
+Из неё вытекает, что $\alpha_1$ и $1 - \alpha_2$ должны быть симметричны относительно $\frac{1}{2},\ F(g_1) = \frac{1-\gamma}{2} = \alpha_1,\ F(g_2) = \frac{1+\gamma}{2} = 1 - \alpha_2$ \par 
+Мы получили симметричный/центральный интервал, $g_1 = \chi_{n,(1-\gamma)/2},\ g_2 = \chi_{n,(1+\gamma)/2}$, вероятность попасть левее него равна вероятности попасть правее \par 
+4) Оптимальный интервал для параметра в модели $N(\theta, \sigma^2)$ \par 
+$G(X, \theta) = \sqrt{n}\frac{\overline{X} - \theta}{\sigma}$ \par 
+$\Phi(g)$ - интеграл вероятности, $\Phi(g_2) - \Phi(g_1) = \gamma$ \par 
+$G(X, T_1) = g_1,\ G(X, T_2) = g_2$ или наоборот, чтобы было $T_1 < T_2$ \par 
+Решаем уравнение $G(X, T) = g$ \par 
+$\frac{\sqrt{n}(\overline{X} - T)}{\sigma} = g$ \par 
+$\overline{X} - T = \frac{g\sigma}{\sqrt{n}}$ \par 
+$T = \overline{X} - \frac{g\sigma}{\sqrt{n}}$ \par 
+$T_1 = \overline{X} - \frac{g_2\sigma}{\sqrt{n}},\ T_2 = \overline{X} - \frac{g_1\sigma}{\sqrt{n}}$, так как $- \frac{g_1\sigma}{\sqrt{n}} > - \frac{g_2\sigma}{\sqrt{n}}$ \par 
+$l = T_2 - T_1 = (g_2 - g_1)\frac{\sigma}{\sqrt{n}}$, мы должны минимизировать $l$ или же $g_2 - g_1$ при соблюдении условия $\Phi(g_2) - \Phi(g_1) = \gamma$ \par 
+Решаем задачу методом множителя Лагранжа, вводим новую функцию с параметром \par 
+$\phi(g_1, g_2, \lambda) = (g_2 - g_1) + \lambda(\Phi(g_2) - \Phi(g_1) - \gamma)$ - ищем минимум получившейся функции \par 
+$grad\ \phi = (-1 - \lambda\Phi'(g_1),\ 1 + \lambda\Phi'(g_2),\ \Phi(g_2) - \Phi(g_1) - \gamma) = (0,\ 0,\ 0)$ \par 
+$1 + \lambda\Phi'(g_1) = 1 + \lambda\Phi'(g_2) = 0 \Rightarrow \Phi'(g_1) = \Phi'(g_2)$ \par 
+$\frac{1}{\sqrt{2\pi}}e^{-\frac{g_1^2}{2}} = \frac{1}{\sqrt{2\pi}}e^{-\frac{g_2^2}{2}}$ \par 
+$g_1^2 = g_2^2$ \par 
+$g_1 = -g_2$ \par 
+$\gamma = \Phi(g_2) - \Phi(-g_2) = \Phi(g_2) - (1 - \Phi(g_2))$ \par 
+$\Phi(g_2) = \frac{1+\gamma}{2},\ g_2 = c_{\gamma},\ g_1 = -c_{\gamma}$ - центральный оптимальный доверительный интервал \par 
+5) Доверительный интервал для параметра равномерного распределения $R((0, \theta))$ \par 
+На выбор 2 центральные статистики \par 
+Первая это $\frac{\overline{X} - \frac{\theta}{2}}{\theta} = \frac{\overline{X}}{\theta} - \frac{1}{2}$, при объёме выборки (то есть $n$) $>12$ распределение $\sqrt{n}(\frac{\overline{X}}{\theta} - \frac{1}{2})$ будет приближенно-нормальным, и оценка $\gamma$ тоже будет приближенной - поэтому мы выберем следующую центральную статистику \par 
+Вторая это $\frac{X_{(n)}}{\theta}$, в этом случае квантилями будут просто корни $n$-ой степени \par 
+Убедимся, что $(\frac{X_{(n)}}{\theta})^n \sim R((0,1))$ \par 
+$(\frac{X_{(n)}}{\theta})^n < x \Leftrightarrow \frac{X_{(n)}}{\theta} < \sqrt[n]{x}$ \par 
+$F_{(n)}(\sqrt[n]{x}) = (\sqrt[n]{x})^n = x$ \par 
+Упростим себе задачу ещё больше - вместо $\frac{X_{(n)}}{\theta}$ в качестве центральной статистики возьмём $(\frac{X_{(n)}}{\theta})^n$, тогда $F_G(g) = g$ \par 
+Нужно найти $g_1$ и $g_2$ ($g_1 < g_2$) чтобы $F(g_2) - F(g_1) = \gamma$ или же $g_2 - g_1 = \gamma$ \par 
+$g_2 = g_1 + \gamma$ должно быть меньше одного, тогда достаточно взять любое $g_1 < 1 - \gamma$ \par 
+Теперь ищем статистики $T_1$ и $T_2$ \par 
+$(\frac{X_{(n)}}{T})^n = g$ \par 
+$\frac{X_{(n)}}{T} = \sqrt[n]{g}$ \par 
+$T = \frac{X_{(n)}}{\sqrt[n]{g}}$ \par 
+$T_1 = \frac{X_{(n)}}{\sqrt[n]{g_2}},\ T_2 = \frac{X_{(n)}}{\sqrt[n]{g_1}}$ \par 
+Продолжение в следующей лекции
+\end{document}

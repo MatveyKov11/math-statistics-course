@@ -1,0 +1,32 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[OT1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\topmargin=-0.54cm
+\textheight=25.7cm
+\oddsidemargin=-0.04cm
+\textwidth=17cm
+\begin{document}
+Продолжение доказательства \par 
+$\sqrt{n}(\widehat{\theta}_n - \theta) = \frac{U(\theta)}{\sqrt{n}\sqrt{i_1(\theta)}}\cdot\frac{1}{1 + \eta_n}$, где $\eta_n \to^{\mathbb{P}} 0$, $\frac{U(\theta)}{\sqrt{n}\sqrt{i_1(\theta)}} \to^d \xi\ Low(\xi) = N(0, \frac{1}{i_1(\theta)})$  \par 
+Осталось доказать сходимость по распределению для $\sqrt{n}(\widehat{\theta}_n$ к $\xi$ \par 
+Лемма \par 
+Пусть $\xi_n \to^d \xi$ с законом $N(0, \frac{1}{i_1(\theta)})$ и $\eta_n \to^{\mathbb{P}} 0$ \par 
+Тогда $\frac{\xi_n}{1+\eta_n} \to^d \xi$ \par 
+Доказательство \par 
+$F(x)$ - функция распределения для $N(0, \frac{1}{i_1(\theta)})$, нужно показать, что $\forall x\in \mathbb{R}^1\ \mathbb{P}(\{\frac{\xi_n}{1+\eta_n} < x\}) \to F(x)$ \par 
+Пусть $0 < \epsilon < \frac{1}{2}$ \par 
+$A_n = \{\eta_n > \epsilon\},\ \mathbb{P}(A_n) \to 0$ при $n \to \infty$ \par 
+$\mathbb{P}(\{\frac{\xi_n}{1+\eta_n} < x\}) = \mathbb{P}(\{\xi_n < x(1+\eta_n)\}) = \mathbb{P}(\{\xi_n < x(1+\eta_n)\} \cap A_n) + \mathbb{P}(\{\xi_n < x(1+\eta_n)\} \cap \overline{A_n})$ \par 
+Переходим к верхнему пределу (первая вероятность с $A_n$ становится равна нулю) \par 
+$\overline{\lim\limits_{n\to\infty}}\ \mathbb{P}(\{\frac{\xi_n}{1+\eta_n} < x \}) \leq \overline{\lim\limits_{n\to\infty}}\ \mathbb{P}(\{\xi_n < x(1+\epsilon)\}) = F(x(1+\epsilon))$ \par 
+Устремим $\epsilon$ к нулю и получим $\overline{\lim\limits_{n\to\infty}}\ \mathbb{P}(\{\frac{\xi_n}{1+\eta_n} < x\}) \leq F(x)$ \par 
+Теперь нижний предел \par 
+$\underline{\lim}\ \mathbb{P}(\{\frac{\xi_n}{1+\eta_n} < x\}) = \underline{\lim}\ \mathbb{P}(\{\xi_n < x(1+\eta_n)\}) \geq \underline{\lim}\ \mathbb{P}(\{\xi_n < x\}) = F(x)$ \par 
+$F(x) \leq \underline{\lim}\ \mathbb{P}(\{\frac{\xi_n}{1+\eta_n} < x\}) \leq \underline{\lim}\ \mathbb{P}(\{\frac{\xi_n}{1+\eta_n} < x\}) \leq F(x)$ отсюда $\lim\ \mathbb{P}(\{\frac{\xi_n}{1+\eta_n} < x\}) = F(x)$ - QED леммы и теоремы \par 
+\end{document}
