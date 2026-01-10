@@ -47,7 +47,7 @@ $\sqrt{n}(\widehat{\theta}_n - \theta) = \sqrt{n}U(\theta)(-\frac{U'(\theta)}{n}
 $\sqrt{n}(\widehat{\theta}_n - \theta) = \frac{U(\theta)}{\sqrt{n}}(-\frac{U'(\theta)}{n} - \frac{\epsilon_n}{n})^{-1}$ - надо оценить множитель перед скобкой и 2 дроби в скобке \par 
 $\frac{U(\theta)}{\sqrt{n}\sqrt{i_1(\theta)}}$ сходится к стандартной нормальной величине, $\frac{U(\theta)}{\sqrt{n}i_1(\theta)}$ сходится к распределению $N(0, \frac{1}{i_1(\theta)})$ \par 
 $-\frac{U'(\theta)}{n} = \frac{1}{n}\sum\limits_{i=1}^n(-\frac{\partial^2}{\partial\theta^2}\ln L(X_i, \theta)) \to^{\mathbb{P}} -E_{\theta}\frac{\partial^2}{\partial\theta^2}\ln L(X_1, \theta) = D_{\theta}U(X_1, \theta) = i_1(\theta)$ \par 
-$\sqrt{n}(\widehat{\theta}_n - \theta) = \frac{U(\theta)}{\sqrt{n}}(-\frac{U'(\theta)}{n} - \frac{\epsilon_n}{n})^{-1}$, множитель перед скобкой сходится по распределению к $\xi \sim N(0, \frac{1}{i_1(\theta)})$, первая дробь в скобке стремится по вероятности к единице \par 
+$\sqrt{n}(\widehat{\theta}_n - \theta) = \frac{U(\theta)}{\sqrt{n}i_1(\theta)}(-\frac{U'(\theta)}{ni_1(\theta)} - \frac{\epsilon_n}{ni_1(\theta)})^{-1}$, множитель перед скобкой сходится по распределению к $\xi \sim N(0, \frac{1}{i_1(\theta)})$, первая дробь в скобке стремится по вероятности к единице \par 
 Осталось доказать, что $\frac{1}{n}\epsilon_n = \frac{1}{2n}U''(\theta^*)(\widehat{\theta}_n - \theta) \to^{\mathbb{P}} 0$ \par 
 $\mathbb{P}_{\theta}(\{\frac{1}{2n}|U''(\theta^*)(\widehat{\theta}_n - \theta)| > \delta\}) \leq \mathbb{P}_{\theta}(\{\frac{1}{2n}\sum\limits_{i=1}^nM(X_i)\cdot|\widehat{\theta}_n - \theta| > \delta\})$ \par 
 $\eta_n = \frac{1}{2}|\widehat{\theta}_n - \theta| \to^{\mathbb{P}} 0$ \par 
