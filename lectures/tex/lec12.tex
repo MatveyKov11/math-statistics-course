@@ -53,4 +53,16 @@ $T_1 = e^{g_1/n}(\prod\limits_{i=1}^nX_i)^{1/n},\ T_2 = e^{g_2/n}(\prod\limits_{
 Доверительный интервал - $\left( e^{g_1/n}(\prod\limits_{i=1}^nX_i)^{1/n}; e^{g_2/n}(\prod\limits_{i=1}^nX_i)^{1/n} \right)$ \par 
 Для центрального доверительного интервала в качестве $g_1$ берём квантиль порядка $\frac{1-\gamma}{2}$, а для $g_2$ берём квантиль порядка $\frac{1+\gamma}{2}$ \par 
 Существуют и другие методы построения, но их не рассматриваем \par 
+Асимптотические доверительные интервалы \par 
+Пусть $\widehat{\theta}_n$ - оценка максимального правдоподобия для параметра $\theta$ \par 
+$\sqrt{n}(\widehat{\theta}_n - \theta) \to^d \xi \sim N(0, \frac{1}{i_1(\theta)})$ \par 
+$\sqrt{n}\sqrt{i_1(\theta)}(\widehat{\theta}_n - \theta) \to^d \xi \sim N(0, 1)$ \par 
+Пусть $\gamma$ - уровень доверия, $c_{\gamma} = \Phi^{-1}(\frac{1+\gamma}{2}), -c_{\gamma} = \Phi^{-1}(\frac{1-\gamma}{2})$ \par 
+$\mathbb{P}(\{\sqrt{n}\sqrt{i_1(\theta)}|\widehat{\theta}_n - \theta| < c_{\gamma}\}) \approx \Phi(\frac{1+\gamma}{2}) - \Phi(\frac{1-\gamma}{2}) = \gamma$ \par 
+$|\widehat{\theta}_n - \theta| < \frac{c_{\gamma}}{\sqrt{n}\sqrt{i_1(\theta)}}$ с вероятностью, близкой к $\gamma$ \par 
+Проблема - $i_1$ зависит от $\theta$. В силу состоятельности функций от оценки максимального правдоподобия заменим $i_1(\theta)$ на $i_1(\widehat{\theta}_i)$ \par 
+Примерно так же доказывается, что $|\widehat{\theta}_n - \theta| < \frac{c_{\gamma}}{\sqrt{n}\sqrt{i_1(\widehat{\theta}_n)}}$ - асимптотический $\gamma$-доверительный интервал \par 
+Пример - $Bi(1, \theta)$ \par 
+$\overline{X}$ - оценка максимального правдоподобия, $i_1(\theta) = \frac{1}{\theta(1 - \theta)}$ \par 
+Доверительный интервал - $\left( \overline{X} - c_{\gamma}\sqrt{\frac{\overline{X}(1 - \overline{X})}{n}}; \overline{X} + c_{\gamma}\sqrt{\frac{\overline{X}(1 - \overline{X})}{n}} \right)$
 \end{document}
